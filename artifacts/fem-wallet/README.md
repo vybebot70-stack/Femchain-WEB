@@ -43,10 +43,15 @@ The build uses Next.js static export and writes the site to `artifacts/fem-walle
 
 ## Deploying on Vercel
 
-1. Import the repository into Vercel.
-2. Set **Root Directory** to `artifacts/fem-wallet` and use the Next.js framework preset.
-3. Keep the pnpm workspace files and shared workspace packages available to the project when prompted; this app depends on workspace packages outside its artifact directory.
-4. Use the build command `pnpm --filter @workspace/fem-wallet run build`. The static export is written to `out/`.
-5. No environment variables are currently required for the website.
+The repository root contains a Vercel Services configuration in `vercel.json`. Import the repository with the Vercel project root set to the repository root so that it can read the service definitions and pnpm workspace.
 
-The app is configured with `output: "export"` and `trailingSlash: true`. It uses static pages and does not require a runtime API server for the site itself.
+The current routing draft:
+
+- `fem-wallet` is public at `/` and handles the site's pages.
+- `api-server` is included as an internal service. The FEM site does not currently call it; its only application endpoint is `/api/healthz`.
+- `mockup-sandbox` is excluded because it is Replit component-preview tooling, not a production FEM service.
+- No service bindings are configured because no service currently calls another service.
+
+The site uses Next.js static export (`output: "export"`) and writes to `out/`. No environment variables are currently required for the site.
+
+To make the API public on the same domain, add a `/api/(.*)` rewrite to `api-server` before the catch-all rewrite to `fem-wallet`. Confirm that exposure before publishing.

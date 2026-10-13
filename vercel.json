@@ -1,0 +1,24 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "fem-wallet": {
+      "root": "artifacts/fem-wallet",
+      "framework": "nextjs",
+      "buildCommand": "pnpm run build",
+      "outputDirectory": "out"
+    },
+    "api-server": {
+      "root": "artifacts/api-server",
+      "framework": "express",
+      "buildCommand": "pnpm run build"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": {
+        "service": "fem-wallet"
+      }
+    }
+  ]
+}
