@@ -16,6 +16,7 @@ import {
   X,
 } from 'lucide-react';
 import { InfoPage, NotFound, WalletAppPage } from './Pages';
+import LearnPage from './LearnPage';
 
 const logo = '/fem-mark.png';
 
@@ -110,7 +111,9 @@ function LandingContent() {
             <Link href="/wallet" onClick={closeMenu}>Wallet</Link>
             <Link href="/chain" onClick={closeMenu}>FEM Chain</Link>
             <Link href="/ecosystem" onClick={closeMenu}>Explore</Link>
+            <Link href="/learn" onClick={closeMenu} data-testid="link-home-nav-learn">Learn</Link>
             <Link href="/community" onClick={closeMenu}>Community</Link>
+            <Link href="/help" onClick={closeMenu} data-testid="link-home-nav-help">Help</Link>
             <Link href="/app" className="button button-primary" onClick={closeMenu}>Wallet preview <ArrowUpRight aria-hidden="true" /></Link>
           </nav>
         </div>
@@ -129,6 +132,9 @@ function LandingContent() {
                 </Link>
                 <Link className="button button-light" href="/chain">
                   Discover FEM Chain <ArrowDown aria-hidden="true" />
+                </Link>
+                <Link className="button button-light" href="/learn" data-testid="link-hero-learn">
+                  Start learning <ArrowRight aria-hidden="true" />
                 </Link>
               </div>
               <div className="hero-note">WALLET + NETWORK, DESIGNED TO WORK TOGETHER</div>
@@ -293,6 +299,7 @@ function LandingContent() {
               <Link href="/wallet">Wallet</Link>
               <Link href="/chain">FEM Chain</Link>
               <Link href="/ecosystem">Ecosystem</Link>
+              <Link href="/learn" data-testid="link-home-footer-learn">Learn</Link>
               <Link href="/community">Community</Link>
               <Link href="/help">Help</Link>
               <Link href="/app">Wallet preview</Link>
@@ -337,6 +344,10 @@ const routeMeta: Record<string, { title: string; description: string }> = {
   '/community': {
     title: 'FEM Community — Official Updates and Help',
     description: 'Community destinations are not announced yet. Find verified support through the official FEM help center.',
+  },
+  '/learn': {
+    title: 'Learn Onchain — FEM Field Notes',
+    description: 'A practical, generic introduction to wallets, blockchain networks, transactions, and safer onchain habits.',
   },
   '/help': {
     title: 'FEM Help — Official Support Information',
@@ -405,6 +416,7 @@ function App() {
         <Route path="/chain" component={() => <InfoPage path="/chain" />} />
         <Route path="/ecosystem" component={() => <InfoPage path="/ecosystem" />} />
         <Route path="/community" component={() => <InfoPage path="/community" />} />
+        <Route path="/learn" component={LearnPage} />
         <Route path="/help" component={() => <InfoPage path="/help" />} />
         <Route path="/app" component={() => <WalletAppPage path="/app" />} />
         <Route path="/app/send" component={() => <WalletAppPage path="/app/send" />} />

@@ -7,12 +7,24 @@ import {
   ArrowRight,
   ArrowUpRight,
   Blocks,
+  BookOpen,
+  Check,
+  CircleHelp,
+  Compass,
   ExternalLink,
+  Fingerprint,
+  FolderSearch,
   Info,
+  KeyRound,
+  Layers3,
+  Menu,
+  Network,
+  ShieldCheck,
   Send,
   Settings,
   ShieldAlert,
   Wallet,
+  X,
 } from 'lucide-react';
 
 const logo = '/fem-mark.png';
@@ -22,11 +34,13 @@ const siteLinks = [
   { href: '/wallet', label: 'Wallet' },
   { href: '/chain', label: 'FEM Chain' },
   { href: '/ecosystem', label: 'Ecosystem' },
+  { href: '/learn', label: 'Learn' },
   { href: '/community', label: 'Community' },
   { href: '/help', label: 'Help' },
 ];
 
-function RouteHeader() {
+export function RouteHeader() {
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <header className="route-header">
       <div className="wrap route-header-inner">
@@ -34,25 +48,49 @@ function RouteHeader() {
           <img src={logo} alt="" width="35" height="35" />
           <span>FEM<small>WALLET + CHAIN</small></span>
         </Link>
-        <nav className="route-nav" aria-label="Main navigation">
+        <button
+          className="route-menu-toggle"
+          type="button"
+          aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          aria-expanded={menuOpen}
+          aria-controls="route-navigation"
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          {menuOpen ? <X size={21} /> : <Menu size={21} />}
+        </button>
+        <nav id="route-navigation" className={`route-nav${menuOpen ? ' is-open' : ''}`} aria-label="Main navigation">
           {siteLinks.map((item) => (
-            <Link href={item.href} key={item.href}>{item.label}</Link>
+            <Link
+              href={item.href}
+              key={item.href}
+              onClick={() => setMenuOpen(false)}
+              data-testid={`link-route-nav-${item.href.slice(1).replace(/\//g, '-')}`}
+            >
+              {item.label}
+            </Link>
           ))}
-          <Link href="/app" className="button button-primary">Wallet preview <ArrowRight aria-hidden="true" /></Link>
+          <Link href="/app" className="button button-primary" onClick={() => setMenuOpen(false)} data-testid="link-route-nav-wallet-preview">
+            Wallet preview <ArrowRight aria-hidden="true" />
+          </Link>
         </nav>
       </div>
     </header>
   );
 }
 
-function RouteFooter() {
+export function RouteFooter() {
   return (
     <footer className="route-footer">
       <div className="wrap route-footer-row">
         <span>FEM / WALLET + CHAIN · An introduction, not an investment offer.</span>
         <nav className="route-footer-links" aria-label="Footer navigation">
           <Link href="/">Home</Link>
-          {siteLinks.map((item) => <Link key={item.href} href={item.href}>{item.label}</Link>)}
+          {siteLinks.map((item) => (
+            <Link key={item.href} href={item.href} data-testid={`link-route-footer-${item.href.slice(1).replace(/\//g, '-')}`}>
+              {item.label}
+            </Link>
+          ))}
+          <Link href="/app" data-testid="link-route-footer-wallet-preview">Wallet preview</Link>
           <a href={helpUrl} target="_blank" rel="noopener noreferrer">Help center <ExternalLink size={12} /></a>
         </nav>
       </div>
@@ -156,6 +194,195 @@ const pages: Record<string, InfoConfig> = {
   },
 };
 
+const walletConcepts = [
+  {
+    number: '01',
+    title: 'Wallet',
+    body: 'Wallet software helps you use and manage the keys associated with blockchain accounts. It is an interface, not a container holding coins.',
+    icon: Wallet,
+  },
+  {
+    number: '02',
+    title: 'Account',
+    body: 'An account is an identity on a blockchain network. Its address can be shared to receive assets; its secret credentials should not be.',
+    icon: Fingerprint,
+  },
+  {
+    number: '03',
+    title: 'Keys & recovery',
+    body: 'Keys authorize account activity. A recovery phrase or private key can give control of a wallet—keep it private and offline.',
+    icon: KeyRound,
+  },
+  {
+    number: '04',
+    title: 'Review before approval',
+    body: 'Transactions may be difficult to reverse. Check the action, destination, amount, and network before approving it in a real wallet.',
+    icon: ShieldCheck,
+  },
+];
+
+function WalletExplainer() {
+  return (
+    <div className="route-feature route-wallet-feature">
+      <section className="route-concept-intro">
+        <div>
+          <span className="eyebrow">A few useful building blocks</span>
+          <h2 className="route-heading">Know what a wallet<br />is asking you to do.</h2>
+        </div>
+        <p>These are general blockchain-wallet concepts. They explain familiar wallet patterns and do not describe FEM-specific account, key, or network implementation.</p>
+      </section>
+      <div className="wallet-concept-grid">
+        {walletConcepts.map((concept) => {
+          const Icon = concept.icon;
+          return (
+            <article className="wallet-concept" key={concept.number} data-testid={`wallet-concept-${concept.number}`}>
+              <div className="wallet-concept-top"><span>{concept.number} / CONCEPT</span><Icon aria-hidden="true" /></div>
+              <h3>{concept.title}</h3>
+              <p>{concept.body}</p>
+            </article>
+          );
+        })}
+      </div>
+      <div className="route-safety-band">
+        <div className="route-safety-icon"><ShieldCheck aria-hidden="true" /></div>
+        <div>
+          <span className="eyebrow">Wallet safety, always</span>
+          <h3>Never share your recovery phrase or private key.</h3>
+          <p>FEM support will not need these secrets. Treat unsolicited messages, unexpected connection requests, and unofficial download links with care.</p>
+        </div>
+        <Link className="route-text-link" href="/help" data-testid="link-wallet-safety">
+          Read verified safety guidance <ArrowRight aria-hidden="true" />
+        </Link>
+      </div>
+      <div className="route-next-steps">
+        <div><BookOpen aria-hidden="true" /><span><strong>New to onchain?</strong><small>Follow the short, general learning path.</small></span></div>
+        <Link className="button button-primary" href="/learn" data-testid="link-wallet-learn">
+          Start with FEM Learn <ArrowRight aria-hidden="true" />
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+function ChainExplainer() {
+  return (
+    <div className="route-feature route-chain-feature">
+      <section className="chain-role-intro">
+        <div>
+          <span className="eyebrow">The confirmed high-level role</span>
+          <h2 className="route-heading">A foundation for<br />FEM ecosystem activity.</h2>
+        </div>
+        <p>FEM Chain is described as the network layer associated with the FEM ecosystem. This is a conceptual overview only—not a technical guide or a claim about specific capabilities.</p>
+      </section>
+      <div className="chain-role-model" aria-label="Conceptual relationship between FEM Chain and ecosystem experiences">
+        <div className="chain-model-top">
+          <div className="chain-model-node"><span>01 / FOUNDATION</span><Network aria-hidden="true" /><strong>FEM Chain</strong><small>Network layer</small></div>
+          <div className="chain-model-connector" aria-hidden="true"><i /><i /><i /></div>
+          <div className="chain-model-node chain-model-outcome"><span>02 / AROUND IT</span><Layers3 aria-hidden="true" /><strong>Applications &amp; activity</strong><small>High-level ecosystem direction</small></div>
+        </div>
+        <div className="chain-model-foot"><Info aria-hidden="true" />Illustrative relationship only. No deployed services, architecture, performance, or security properties are represented.</div>
+      </div>
+      <section className="chain-unknowns" aria-labelledby="chain-unknowns-title">
+        <div className="chain-unknowns-heading">
+          <span className="eyebrow">Not provided here</span>
+          <h2 id="chain-unknowns-title" className="route-heading">Useful details, once verified.</h2>
+          <p>Do not configure a wallet or rely on network claims from unofficial sources.</p>
+        </div>
+        <div className="chain-unknown-list">
+          {['Network configuration', 'Chain ID and RPC endpoint', 'Explorer and network tools', 'Technical specifications or metrics'].map((item, index) => (
+            <div className="chain-unknown" key={item}><span>0{index + 1}</span><strong>{item}</strong><small>Not confirmed</small></div>
+          ))}
+        </div>
+      </section>
+      <div className="route-next-steps">
+        <div><Compass aria-hidden="true" /><span><strong>Explore with context</strong><small>Browse the ecosystem directory status.</small></span></div>
+        <Link className="button button-primary" href="/ecosystem" data-testid="link-chain-ecosystem">
+          View directory status <ArrowRight aria-hidden="true" />
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+function EcosystemDirectory() {
+  const categories = ['Applications', 'Tools & network resources', 'Community destinations'];
+  return (
+    <div className="route-feature route-directory-feature">
+      <section className="directory-header">
+        <div>
+          <span className="eyebrow">FEM / DIRECTORY STATUS</span>
+          <h2 className="route-heading">A directory worth<br />trusting takes time.</h2>
+        </div>
+        <p>We will only list FEM ecosystem destinations when they can be verified. No projects, tools, or community channels are confirmed for this directory today.</p>
+      </section>
+      <section className="directory-empty" aria-labelledby="directory-empty-title">
+        <div className="directory-empty-art"><FolderSearch aria-hidden="true" /><span>0 VERIFIED LISTINGS</span></div>
+        <div className="directory-empty-copy">
+          <span className="eyebrow">Nothing listed yet</span>
+          <h3 id="directory-empty-title">The directory is being kept clear until there is something confirmed to share.</h3>
+          <p>This is an intentional empty state—not a list of recommendations. Check back for official destinations rather than relying on lookalike listings.</p>
+        </div>
+      </section>
+      <div className="directory-categories" aria-label="Directory sections awaiting verified listings">
+        {categories.map((category, index) => (
+          <div className="directory-category" key={category}>
+            <span>0{index + 1}</span><strong>{category}</strong><small><i />Awaiting verified destination</small>
+          </div>
+        ))}
+      </div>
+      <div className="route-next-steps">
+        <div><Check aria-hidden="true" /><span><strong>Trust the destination, not just the name.</strong><small>Official links will appear here after verification.</small></span></div>
+        <Link className="button button-primary" href="/chain" data-testid="link-ecosystem-chain">
+          Read about FEM Chain <ArrowRight aria-hidden="true" />
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+function CommunityGuide() {
+  return (
+    <div className="route-feature route-community-feature">
+      <section className="community-support-panel">
+        <div className="community-support-main">
+          <span className="eyebrow">The verified way to reach support</span>
+          <h2 className="route-heading">One official help<br />destination. No guesswork.</h2>
+          <p>For FEM support information, use the verified FEM Wallet Help Center. Community channel destinations have not been confirmed, so this site does not link to social accounts or group chats.</p>
+          <div className="community-support-actions">
+            <Link className="button button-primary" href="/help" data-testid="link-community-help">
+              Support details on FEM <ArrowRight aria-hidden="true" />
+            </Link>
+            <a className="route-text-link" href={helpUrl} target="_blank" rel="noopener noreferrer" data-testid="link-community-help-center">
+              Open verified help center <ExternalLink aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+        <div className="community-support-stamp"><CircleHelp aria-hidden="true" /><span>VERIFIED<br />SUPPORT</span></div>
+      </section>
+      <section className="community-safety">
+        <div className="community-safety-heading">
+          <span className="eyebrow">Protect yourself</span>
+          <h2 className="route-heading">A real support contact<br />will not ask for your secrets.</h2>
+        </div>
+        <div className="community-safety-list">
+          <article><span>01</span><div><h3>Keep wallet credentials private</h3><p>Never send a recovery phrase, private key, wallet password, one-time code, or remote-access credentials.</p></div><ShieldCheck aria-hidden="true" /></article>
+          <article><span>02</span><div><h3>Be cautious with unsolicited messages</h3><p>Do not trust a social profile or direct message just because it uses FEM’s name or mark.</p></div><Fingerprint aria-hidden="true" /></article>
+          <article><span>03</span><div><h3>Check links before you act</h3><p>Use the verified help destination for support information. Wallet download options and community links are not announced here.</p></div><ExternalLink aria-hidden="true" /></article>
+        </div>
+      </section>
+      <div className="route-community-footnote"><Info aria-hidden="true" /><p>The Help Center describes the wallet as being built as non-custodial; this is not confirmation of a released app or its setup. Review the actual app and its privacy information before use.</p></div>
+    </div>
+  );
+}
+
+function RouteFeature({ path }: { path: string }) {
+  if (path === '/wallet') return <WalletExplainer />;
+  if (path === '/chain') return <ChainExplainer />;
+  if (path === '/ecosystem') return <EcosystemDirectory />;
+  if (path === '/community') return <CommunityGuide />;
+  return null;
+}
+
 export function InfoPage({ path }: { path: string }) {
   const config = pages[path] ?? pages['/wallet'];
   const external = config.cta?.href.startsWith('http');
@@ -175,21 +402,24 @@ export function InfoPage({ path }: { path: string }) {
               {config.note}
             </aside>
           </div>
-          <div className="route-content route-split">
-            <div>
-              <span className="eyebrow">What is confirmed</span>
-              <h2 className="route-heading">The useful details, without the guesswork.</h2>
+          {path === '/help' && (
+            <div className="route-content route-split">
+              <div>
+                <span className="eyebrow">What is confirmed</span>
+                <h2 className="route-heading">The useful details, without the guesswork.</h2>
+              </div>
+              <div className="route-list">
+                {config.details.map((item) => (
+                  <article className="route-list-item" key={item.number}>
+                    <span>{item.number}</span>
+                    <div><h3>{item.title}</h3><p>{item.body}</p></div>
+                  </article>
+                ))}
+              </div>
             </div>
-            <div className="route-list">
-              {config.details.map((item) => (
-                <article className="route-list-item" key={item.number}>
-                  <span>{item.number}</span>
-                  <div><h3>{item.title}</h3><p>{item.body}</p></div>
-                </article>
-              ))}
-            </div>
-          </div>
-          {config.empty && (
+          )}
+          <RouteFeature path={path} />
+          {config.empty && path !== '/ecosystem' && (
             <section className="empty-panel" aria-label="Coming soon">
               <div className="empty-panel-mark"><Blocks size={20} aria-hidden="true" /></div>
               <h2>{config.empty.title}</h2>
