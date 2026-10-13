@@ -1,11 +1,8 @@
 "use client";
 
-import { useState, type FormEvent, type ReactNode } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import {
-  Activity,
-  ArrowDownLeft,
-  ArrowLeft,
   ArrowRight,
   ArrowUpRight,
   Blocks,
@@ -22,9 +19,6 @@ import {
   Menu,
   Network,
   ShieldCheck,
-  Send,
-  Settings,
-  ShieldAlert,
   Wallet,
   X,
 } from 'lucide-react';
@@ -73,8 +67,8 @@ export function RouteHeader() {
               {item.label}
             </Link>
           ))}
-          <Link href="/app" className="button button-primary" onClick={() => setMenuOpen(false)} data-testid="link-route-nav-wallet-preview">
-            Wallet preview <ArrowRight aria-hidden="true" />
+          <Link href="/wallet" className="button button-primary" onClick={() => setMenuOpen(false)} data-testid="link-route-nav-wallet">
+            Wallet overview <ArrowRight aria-hidden="true" />
           </Link>
         </nav>
       </div>
@@ -94,7 +88,6 @@ export function RouteFooter() {
               {item.label}
             </Link>
           ))}
-          <Link href="/app" data-testid="link-route-footer-wallet-preview">Wallet preview</Link>
           <a href={helpUrl} target="_blank" rel="noopener noreferrer">Help center <ExternalLink size={12} /></a>
         </nav>
       </div>
@@ -122,15 +115,15 @@ const pages: Record<string, InfoConfig> = {
     eyebrow: 'FEM / WALLET',
     title: 'A familiar place to',
     emphasis: 'Begin.',
-    lede: 'FEM Wallet is being shaped as a mobile-first way to keep onchain essentials close. Its patterns will feel familiar to people who have used Ethereum wallets, without assuming details that are not yet confirmed.',
+    lede: 'FEM Wallet is a mobile-first product associated with FEM Chain. This website introduces its direction and verified details; it is not a wallet app and does not perform wallet actions.',
     noteTitle: 'Availability',
     note: 'Official wallet download destinations have not been announced. This site does not link to unofficial downloads.',
     details: [
-      { number: '01', title: 'A familiar wallet pattern', body: 'A clear home for the basic actions people expect from a digital wallet, designed with a mobile-first point of view.' },
-      { number: '02', title: 'A preview, not a live wallet', body: 'The interactive prototype is only a UI demonstration. It does not connect to a wallet, network, or blockchain.' },
+      { number: '01', title: 'Designed for mobile', body: 'FEM Wallet is presented as a mobile-first product for people exploring the FEM ecosystem.' },
+      { number: '02', title: 'A product website', body: 'This website shares information about FEM Wallet. It is not a wallet interface and does not connect to accounts or networks.' },
       { number: '03', title: 'Verified details as they arrive', body: 'Network configuration, supported assets, and availability will be shared when they are officially confirmed.' },
     ],
-    cta: { label: 'Open the wallet UI preview', href: '/app' },
+    cta: { label: 'Explore FEM Chain', href: '/chain' },
   },
   '/chain': {
     eyebrow: 'FEM / CHAIN',
@@ -469,187 +462,6 @@ export function InfoPage({ path }: { path: string }) {
       <RouteFooter />
     </div>
   );
-}
-
-type WalletTab = 'overview' | 'send' | 'receive' | 'activity' | 'settings';
-const walletNav: { id: WalletTab; label: string; href: string; icon: typeof Wallet }[] = [
-  { id: 'overview', label: 'Overview', href: '/app', icon: Wallet },
-  { id: 'send', label: 'Send', href: '/app/send', icon: Send },
-  { id: 'receive', label: 'Receive', href: '/app/receive', icon: ArrowDownLeft },
-  { id: 'activity', label: 'Activity', href: '/app/activity', icon: Activity },
-  { id: 'settings', label: 'Settings', href: '/app/settings', icon: Settings },
-];
-
-function PreviewHeader() {
-  return (
-    <header className="preview-topbar">
-      <Link href="/" className="preview-brand" aria-label="FEM home">
-        <img src={logo} alt="" width="31" height="31" /> FEM Wallet
-      </Link>
-      <span className="preview-label">UI PREVIEW · NOT CONNECTED</span>
-    </header>
-  );
-}
-
-function PreviewSidebar({ active }: { active: WalletTab }) {
-  return (
-    <aside className="preview-sidebar">
-      <div className="preview-sidebar-label">WALLET</div>
-      <nav aria-label="Wallet preview navigation">
-        {walletNav.map(({ id, label, href, icon: Icon }) => (
-          <Link href={href} key={id} aria-current={active === id ? 'page' : undefined} data-testid={`link-wallet-${id}`}>
-            <Icon aria-hidden="true" />{label}
-          </Link>
-        ))}
-      </nav>
-      <Link href="/" className="back-link"><ArrowLeft aria-hidden="true" /> Back to FEM website</Link>
-    </aside>
-  );
-}
-
-function PreviewFrame({ active, title, subtitle, children }: { active: WalletTab; title: string; subtitle: string; children: ReactNode }) {
-  return (
-    <div className="wallet-preview">
-      <PreviewHeader />
-      <div className="preview-layout">
-        <PreviewSidebar active={active} />
-        <main className="preview-main">
-          <span className="preview-kicker">FEM WALLET / PROTOTYPE</span>
-          <h1 className="preview-title">{title}</h1>
-          <p className="preview-subtitle">{subtitle}</p>
-          <div className="preview-warning" role="note"><Info aria-hidden="true" />This is a UI-only preview. It is not connected to a wallet or blockchain. No assets can be sent or received.</div>
-          {children}
-          <p className="preview-bottom">PREVIEW ONLY · NO WALLET CONNECTION · NO TRANSACTION SIGNING OR BROADCASTING</p>
-        </main>
-      </div>
-    </div>
-  );
-}
-
-function WalletOverview() {
-  return (
-    <PreviewFrame active="overview" title="Your wallet" subtitle="A familiar layout for onchain essentials, shown here as a non-functional preview.">
-      <div className="preview-balance">
-        <small>PORTFOLIO VALUE</small>
-        <strong>Not connected</strong>
-        <p>Asset balances are not available in this prototype.</p>
-      </div>
-      <div className="preview-action-row" aria-label="Wallet actions">
-        <Link className="preview-action" href="/app/send"><Send aria-hidden="true" />Send</Link>
-        <Link className="preview-action" href="/app/receive"><ArrowDownLeft aria-hidden="true" />Receive</Link>
-        <Link className="preview-action" href="/app/activity"><Activity aria-hidden="true" />Activity</Link>
-      </div>
-      <section className="preview-card">
-        <h2>Assets</h2>
-        <div className="preview-empty">
-          <Wallet aria-hidden="true" />
-          <strong>No wallet connected</strong>
-          <p>This preview does not connect to a wallet or show token balances.</p>
-        </div>
-      </section>
-    </PreviewFrame>
-  );
-}
-
-function SendPreview() {
-  const [recipient, setRecipient] = useState('');
-  const [amount, setAmount] = useState('');
-  const [reviewed, setReviewed] = useState(false);
-  const [attempted, setAttempted] = useState(false);
-  const valid = recipient.trim().length > 0 && amount.trim().length > 0 && Number(amount) > 0;
-  const submit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setAttempted(true);
-    setReviewed(valid);
-  };
-  return (
-    <PreviewFrame active="send" title="Send" subtitle="A form review preview only. Nothing is transmitted, signed, or broadcast.">
-      <section className="preview-card">
-        <h2>Transfer details</h2>
-        <form className="preview-form" onSubmit={submit} noValidate>
-          <label className="preview-field">
-            Recipient
-            <input value={recipient} onChange={(event) => { setRecipient(event.target.value); setReviewed(false); }} placeholder="Enter a recipient address" autoComplete="off" aria-describedby="recipient-note" data-testid="input-recipient" />
-            <small id="recipient-note">Use a placeholder for this UI review. No address is checked or submitted.</small>
-          </label>
-          <label className="preview-field">
-            Amount
-            <input inputMode="decimal" value={amount} onChange={(event) => { setAmount(event.target.value); setReviewed(false); }} placeholder="0.00" aria-describedby="amount-note" data-testid="input-amount" />
-            <small id="amount-note">No token or network is selected in this prototype.</small>
-          </label>
-          {attempted && !valid && <p className="review-result" role="alert">Enter a recipient and a positive amount to preview the review step. Nothing will be sent.</p>}
-          <button className="preview-button" type="submit" data-testid="button-review-send">Review details <ArrowRight size={15} aria-hidden="true" /></button>
-        </form>
-        {reviewed && (
-          <div className="review-result" role="status">
-            <strong>Review preview only.</strong> Recipient: {recipient.trim()} · Amount: {amount}. This is not a transaction and nothing has been sent.
-          </div>
-        )}
-      </section>
-    </PreviewFrame>
-  );
-}
-
-function ReceivePreview() {
-  return (
-    <PreviewFrame active="receive" title="Receive" subtitle="Receiving details are not available in this prototype.">
-      <section className="preview-card">
-        <h2>Your receiving details</h2>
-        <div className="preview-empty">
-          <ArrowDownLeft aria-hidden="true" />
-          <strong>No address or QR code available</strong>
-          <p>This preview has no connected wallet, so it cannot generate or display a receiving address or QR code.</p>
-        </div>
-      </section>
-    </PreviewFrame>
-  );
-}
-
-function ActivityPreview() {
-  return (
-    <PreviewFrame active="activity" title="Activity" subtitle="A quiet start. There is no connected account or transaction history here.">
-      <section className="preview-card">
-        <h2>Recent activity</h2>
-        <div className="preview-empty">
-          <Activity aria-hidden="true" />
-          <strong>No activity to show</strong>
-          <p>Transactions are not loaded or invented for this UI-only preview.</p>
-        </div>
-      </section>
-    </PreviewFrame>
-  );
-}
-
-function SettingsPreview() {
-  const [compact, setCompact] = useState(false);
-  return (
-    <PreviewFrame active="settings" title="Settings" subtitle="A small settings preview. Unknown network details are intentionally left unconfigured.">
-      <section className="preview-card">
-        <h2>Network configuration</h2>
-        <div className="preview-detail"><span>Network</span><strong>Not configured</strong></div>
-        <div className="preview-detail"><span>Chain ID</span><strong>Not provided</strong></div>
-        <div className="preview-detail"><span>RPC endpoint</span><strong>Not provided</strong></div>
-        <div className="preview-detail"><span>Wallet connection</span><strong>Unavailable in preview</strong></div>
-      </section>
-      <section className="preview-card">
-        <h2>Interface</h2>
-        <label className="preview-detail" style={{ cursor: 'pointer' }}>
-          <span>Compact display</span>
-          <input type="checkbox" checked={compact} onChange={(event) => setCompact(event.target.checked)} aria-label="Compact display preview" data-testid="toggle-compact-display" />
-        </label>
-        <p className="preview-subtitle" aria-live="polite">{compact ? 'Compact display preview is on.' : 'Compact display preview is off.'}</p>
-      </section>
-      <div className="preview-warning"><ShieldAlert aria-hidden="true" />Do not add network settings based on assumptions. Official configuration has not been supplied.</div>
-    </PreviewFrame>
-  );
-}
-
-export function WalletAppPage({ path }: { path: string }) {
-  if (path === '/app/send') return <SendPreview />;
-  if (path === '/app/receive') return <ReceivePreview />;
-  if (path === '/app/activity') return <ActivityPreview />;
-  if (path === '/app/settings') return <SettingsPreview />;
-  return <WalletOverview />;
 }
 
 export function NotFound() {

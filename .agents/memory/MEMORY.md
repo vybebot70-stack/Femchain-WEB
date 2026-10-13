@@ -1,1 +1,1 @@
-- [FEM domain verification](fem-domain-verification.md) — support domain has policy and support content; the root domain was parked when checked, so reverify it before relying on it.
+- [FEM website scope and domain verification](fem-domain-verification.md) — keep the site informational and verify FEM domains, network details, and product claims before publishing.

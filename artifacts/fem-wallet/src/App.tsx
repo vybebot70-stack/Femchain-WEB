@@ -122,7 +122,7 @@ export default function LandingContent() {
             <Link href="/developers" onClick={closeMenu}>Developers</Link>
             <Link href="/community" onClick={closeMenu}>Community</Link>
             <Link href="/help" onClick={closeMenu} data-testid="link-home-nav-help">Help</Link>
-            <Link href="/app" className="button button-primary" onClick={closeMenu}>Wallet preview <ArrowUpRight aria-hidden="true" /></Link>
+            <Link href="/wallet" className="button button-primary" onClick={closeMenu}>About FEM Wallet <ArrowUpRight aria-hidden="true" /></Link>
           </nav>
         </div>
       </header>
@@ -135,8 +135,8 @@ export default function LandingContent() {
               <h1 id="hero-title"><span>Meet</span><span><em>FEM.</em> Move</span><span>forward.</span></h1>
               <p>FEM brings a mobile wallet and an EVM-compatible chain together, with a familiar starting point for people and builders.</p>
               <div className="hero-actions">
-                <Link href="/app" className="button button-primary">
-                  Explore the wallet <ArrowRight aria-hidden="true" />
+                <Link href="/wallet" className="button button-primary">
+                  About FEM Wallet <ArrowRight aria-hidden="true" />
                 </Link>
                 <Link className="button button-light" href="/chain">
                   Discover FEM Chain <ArrowDown aria-hidden="true" />
@@ -206,27 +206,29 @@ export default function LandingContent() {
                 <h2 id="wallet-title">Your next<br />move, <em>in hand.</em></h2>
                 <p>A mobile-first wallet experience for keeping your onchain essentials close and exploring the FEM ecosystem from one familiar place.</p>
                 <Link href="/wallet" className="button button-light">Wallet availability <ArrowUpRight aria-hidden="true" /></Link>
-                <div className="availability">OFFICIAL DOWNLOAD DESTINATIONS · COMING SOON</div>
+                <div className="availability">OFFICIAL DOWNLOADS · NOT ANNOUNCED</div>
               </div>
-              <div className="phone-stage" aria-label="Illustration of a FEM wallet mobile interface">
-                <div className="phone-halo" />
-                <div className="phone">
-                  <div className="phone-screen">
-                    <div className="phone-top"><span>Good to see you</span><img src={logo} alt="" /></div>
-                    <div className="phone-greeting">YOUR WALLET</div>
-                    <div className="phone-balance">Your assets</div>
-                    <div className="phone-sub">A clear view of what you hold</div>
-                    <div className="phone-actions">
-                      <div className="phone-action"><strong>↑</strong>Send</div>
-                      <div className="phone-action"><strong>↓</strong>Receive</div>
-                      <div className="phone-action"><strong>＋</strong>Explore</div>
-                    </div>
-                    <div className="phone-label">In your wallet</div>
-                    <div className="phone-row"><div className="coin-dot">F</div><div>FEM<small>FEM Chain</small></div><b>—</b></div>
-                    <div className="phone-row"><div className="coin-dot" style={{ background: '#667b9f' }}>E</div><div>Ethereum<small>Connected assets</small></div><b>—</b></div>
-                    <div className="phone-foot">A PREVIEW OF THE FEM WALLET EXPERIENCE</div>
+              <div className="wallet-website-visual" aria-hidden="true">
+                <div className="wallet-visual-orbit" />
+                <div className="wallet-visual-card">
+                  <div className="wallet-visual-card-top">
+                    <span className="wallet-visual-mark">F</span>
+                    <span>FEM / INFORMATION</span>
+                    <span>01—03</span>
+                  </div>
+                  <div className="wallet-visual-main">
+                    <span>THE WALLET + THE CHAIN</span>
+                    <strong>Everything<br /><em>starts here.</em></strong>
+                    <p>Explore FEM, learn about the EVM-compatible chain, and follow verified product updates.</p>
+                  </div>
+                  <div className="wallet-visual-card-bottom">
+                    <span>01 / PRODUCT</span>
+                    <span>02 / ECOSYSTEM</span>
+                    <span>03 / BUILDERS</span>
                   </div>
                 </div>
+                <div className="wallet-visual-tag wallet-visual-tag-chain">FEM / CHAIN</div>
+                <div className="wallet-visual-tag wallet-visual-tag-site">FEM / WEBSITE</div>
               </div>
             </div>
           </div>
@@ -311,7 +313,6 @@ export default function LandingContent() {
               <Link href="/developers">Developers</Link>
               <Link href="/community">Community</Link>
               <Link href="/help">Help</Link>
-              <Link href="/app">Wallet preview</Link>
               <a
                 href="https://help.femchain.online"
                 target="_blank"
