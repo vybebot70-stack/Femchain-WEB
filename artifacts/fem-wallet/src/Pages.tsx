@@ -58,6 +58,7 @@ export function RouteHeader() {
           aria-expanded={menuOpen}
           aria-controls="route-navigation"
           onClick={() => setMenuOpen((open) => !open)}
+          data-testid="button-route-menu-toggle"
         >
           {menuOpen ? <X size={21} /> : <Menu size={21} />}
         </button>
