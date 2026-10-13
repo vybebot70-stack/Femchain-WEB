@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.base.json",
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "build", "dist", "**/*.test.ts"],
+  "include": ["next-env.d.ts", ".next/types/**/*.ts", "app/**/*.ts", "app/**/*.tsx", "src/**/*"],
+  "exclude": ["node_modules", "build", "dist", "out", ".next", "upstream", "**/*.test.ts"],
   "compilerOptions": {
     "noEmit": true,
     "jsx": "preserve",
@@ -9,7 +9,8 @@
     "resolveJsonModule": true,
     "allowImportingTsExtensions": true,
     "moduleResolution": "bundler",
-    "types": ["node", "vite/client"],
+    "types": ["node"],
+    "plugins": [{ "name": "next" }],
     "paths": {
       "@/*": ["./src/*"]
     }

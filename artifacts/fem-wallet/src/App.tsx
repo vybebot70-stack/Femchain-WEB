@@ -1,5 +1,7 @@
-import { useEffect, useState } from 'react';
-import { Link, Route, Switch, useLocation } from 'wouter';
+"use client";
+
+import { useState } from 'react';
+import Link from 'next/link';
 import {
   ArrowDown,
   ArrowRight,
@@ -15,8 +17,6 @@ import {
   Wallet,
   X,
 } from 'lucide-react';
-import { InfoPage, NotFound, WalletAppPage } from './Pages';
-import LearnPage from './LearnPage';
 
 const logo = '/fem-mark.png';
 
@@ -60,13 +60,20 @@ const ecosystem = [
     icon: <Compass aria-hidden="true" />,
     featured: false,
   },
+  {
+    name: 'Developers',
+    label: 'EVM BUILDING',
+    description: 'Explore the EVM concepts and builder resources that can inform work on FEM Chain.',
+    icon: <Blocks aria-hidden="true" />,
+    featured: false,
+  },
 ];
 
 const faq = [
   {
     question: 'What is FEM?',
     answer:
-      'FEM brings together a mobile wallet and FEM Chain. The wallet is a familiar starting point for managing digital assets; the chain is the network for applications and activity in the FEM ecosystem.',
+      'FEM brings together a mobile wallet and FEM Chain. FEM Chain is EVM-compatible; its official network settings and supported tools still need to be published.',
   },
   {
     question: 'Do I need to know how blockchains work?',
@@ -85,7 +92,7 @@ const faq = [
   },
 ];
 
-function LandingContent() {
+export default function LandingContent() {
   const [menuOpen, setMenuOpen] = useState(false);
   const closeMenu = () => setMenuOpen(false);
 
@@ -112,6 +119,7 @@ function LandingContent() {
             <Link href="/chain" onClick={closeMenu}>FEM Chain</Link>
             <Link href="/ecosystem" onClick={closeMenu}>Explore</Link>
             <Link href="/learn" onClick={closeMenu} data-testid="link-home-nav-learn">Learn</Link>
+            <Link href="/developers" onClick={closeMenu}>Developers</Link>
             <Link href="/community" onClick={closeMenu}>Community</Link>
             <Link href="/help" onClick={closeMenu} data-testid="link-home-nav-help">Help</Link>
             <Link href="/app" className="button button-primary" onClick={closeMenu}>Wallet preview <ArrowUpRight aria-hidden="true" /></Link>
@@ -123,9 +131,9 @@ function LandingContent() {
         <section className="hero" aria-labelledby="hero-title">
           <div className="wrap hero-grid">
             <div className="hero-copy">
-              <span className="eyebrow">A new way into onchain</span>
+              <span className="eyebrow">An EVM-compatible chain, made approachable</span>
               <h1 id="hero-title"><span>Meet</span><span><em>FEM.</em> Move</span><span>forward.</span></h1>
-              <p>A mobile wallet and blockchain ecosystem with familiar foundations and room to explore what comes next.</p>
+              <p>FEM brings a mobile wallet and an EVM-compatible chain together, with a familiar starting point for people and builders.</p>
               <div className="hero-actions">
                 <Link href="/app" className="button button-primary">
                   Explore the wallet <ArrowRight aria-hidden="true" />
@@ -231,7 +239,7 @@ function LandingContent() {
                 <span className="eyebrow">03 / The ecosystem</span>
                 <h2 className="section-title" id="ecosystem-title">A chain is a<br /><em>place to build.</em></h2>
               </div>
-              <p>FEM Chain is the foundation. Around it, a broader ecosystem can take shape—one application, idea and community at a time.</p>
+              <p>FEM Chain is EVM-compatible. Around it, a broader ecosystem can take shape—one application, idea and community at a time.</p>
             </div>
             <div className="ecosystem-grid">
               {ecosystem.map((item) => (
@@ -242,7 +250,7 @@ function LandingContent() {
                   </div>
                   <h3>{item.name}</h3>
                   <p>{item.description}</p>
-                  <Link className="eco-link" href={item.name === 'FEM Chain' ? '/chain' : item.name === 'Community' ? '/community' : '/ecosystem'}>
+                  <Link className="eco-link" href={item.name === 'FEM Chain' ? '/chain' : item.name === 'Community' ? '/community' : item.name === 'Developers' ? '/developers' : '/ecosystem'}>
                     Explore <ArrowRight aria-hidden="true" />
                   </Link>
                 </article>
@@ -300,6 +308,7 @@ function LandingContent() {
               <Link href="/chain">FEM Chain</Link>
               <Link href="/ecosystem">Ecosystem</Link>
               <Link href="/learn" data-testid="link-home-footer-learn">Learn</Link>
+              <Link href="/developers">Developers</Link>
               <Link href="/community">Community</Link>
               <Link href="/help">Help</Link>
               <Link href="/app">Wallet preview</Link>
@@ -323,110 +332,3 @@ function LandingContent() {
     </div>
   );
 }
-
-const routeMeta: Record<string, { title: string; description: string }> = {
-  '/': {
-    title: 'FEM Wallet & Chain — A Clearer Way Onchain',
-    description: 'Meet FEM: a mobile wallet and blockchain ecosystem with familiar foundations and room to explore what comes next.',
-  },
-  '/wallet': {
-    title: 'FEM Wallet — A Familiar Place to Begin',
-    description: 'Learn about FEM Wallet, its mobile-first direction, and what is known about availability. Official download destinations are not announced yet.',
-  },
-  '/chain': {
-    title: 'FEM Chain — The Network Behind FEM',
-    description: 'An introduction to FEM Chain and its high-level role in the FEM ecosystem, without unconfirmed network configuration or technical claims.',
-  },
-  '/ecosystem': {
-    title: 'FEM Ecosystem — Projects and Tools',
-    description: 'The FEM ecosystem directory is coming soon. No projects or tools are listed until official destinations can be verified.',
-  },
-  '/community': {
-    title: 'FEM Community — Official Updates and Help',
-    description: 'Community destinations are not announced yet. Find verified support through the official FEM help center.',
-  },
-  '/learn': {
-    title: 'Learn Onchain — FEM Field Notes',
-    description: 'A practical, generic introduction to wallets, blockchain networks, transactions, and safer onchain habits.',
-  },
-  '/help': {
-    title: 'FEM Help — Official Support Information',
-    description: 'Find support information for FEM Wallet and FEM Chain through the official FEM help center at help.femchain.online.',
-  },
-  '/app': {
-    title: 'FEM Wallet Preview — Overview',
-    description: 'Explore a UI-only FEM Wallet prototype. It does not connect to a wallet or blockchain and cannot send or receive assets.',
-  },
-  '/app/send': {
-    title: 'FEM Wallet Preview — Send Review',
-    description: 'Review a simulated send form in the FEM Wallet UI prototype. No transaction is signed, sent, or broadcast.',
-  },
-  '/app/receive': {
-    title: 'FEM Wallet Preview — Receive',
-    description: 'FEM Wallet receiving screen prototype. No wallet address or QR code is generated or displayed.',
-  },
-  '/app/activity': {
-    title: 'FEM Wallet Preview — Activity',
-    description: 'An empty activity state in the FEM Wallet prototype, with no fabricated transaction history.',
-  },
-  '/app/settings': {
-    title: 'FEM Wallet Preview — Settings',
-    description: 'Preview FEM Wallet settings. Network configuration is unknown and no chain or RPC settings are configured.',
-  },
-};
-
-function RouteMetadata() {
-  const [location] = useLocation();
-  useEffect(() => {
-    const meta = routeMeta[location] ?? {
-      title: 'Page not found — FEM Wallet & Chain',
-      description: 'This FEM page could not be found. Return to the FEM Wallet and Chain introduction.',
-    };
-    document.title = meta.title;
-    const setMeta = (selector: string, attribute: string, value: string) => {
-      let element = document.head.querySelector<HTMLMetaElement>(selector);
-      if (!element) {
-        element = document.createElement('meta');
-        const [key, selectorValue] = selector.match(/\[(name|property)="([^"]+)"\]/)?.slice(1) ?? [];
-        if (key && selectorValue) element.setAttribute(key, selectorValue);
-        document.head.appendChild(element);
-      }
-      element.setAttribute(attribute, value);
-    };
-    setMeta('meta[name="description"]', 'content', meta.description);
-    setMeta('meta[property="og:title"]', 'content', meta.title);
-    setMeta('meta[property="og:description"]', 'content', meta.description);
-    setMeta('meta[property="og:type"]', 'content', 'website');
-    setMeta('meta[property="og:image"]', 'content', '/fem-mark.png');
-    setMeta('meta[name="twitter:title"]', 'content', meta.title);
-    setMeta('meta[name="twitter:description"]', 'content', meta.description);
-    setMeta('meta[name="twitter:card"]', 'content', 'summary_large_image');
-    setMeta('meta[name="twitter:image"]', 'content', '/fem-mark.png');
-  }, [location]);
-  return null;
-}
-
-function App() {
-  return (
-    <>
-      <RouteMetadata />
-      <Switch>
-        <Route path="/" component={LandingContent} />
-        <Route path="/wallet" component={() => <InfoPage path="/wallet" />} />
-        <Route path="/chain" component={() => <InfoPage path="/chain" />} />
-        <Route path="/ecosystem" component={() => <InfoPage path="/ecosystem" />} />
-        <Route path="/community" component={() => <InfoPage path="/community" />} />
-        <Route path="/learn" component={LearnPage} />
-        <Route path="/help" component={() => <InfoPage path="/help" />} />
-        <Route path="/app" component={() => <WalletAppPage path="/app" />} />
-        <Route path="/app/send" component={() => <WalletAppPage path="/app/send" />} />
-        <Route path="/app/receive" component={() => <WalletAppPage path="/app/receive" />} />
-        <Route path="/app/activity" component={() => <WalletAppPage path="/app/activity" />} />
-        <Route path="/app/settings" component={() => <WalletAppPage path="/app/settings" />} />
-        <Route component={NotFound} />
-      </Switch>
-    </>
-  );
-}
-
-export default App;

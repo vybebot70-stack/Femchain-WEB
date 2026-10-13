@@ -5,6 +5,8 @@ dist
 tmp
 out-tsc
 *.tsbuildinfo
+.next
+/artifacts/fem-wallet/out/
 .expo
 .expo-shared
 

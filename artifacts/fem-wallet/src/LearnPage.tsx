@@ -1,5 +1,5 @@
 import { ArrowRight, ArrowUpRight, Blocks, BookOpen, Compass, Fingerprint, Info, Layers3, ShieldCheck, Wallet } from 'lucide-react';
-import { Link } from 'wouter';
+import Link from 'next/link';
 import { RouteFooter, RouteHeader } from './Pages';
 
 const lessons = [

@@ -1,5 +1,7 @@
+"use client";
+
 import { useState, type FormEvent, type ReactNode } from 'react';
-import { Link } from 'wouter';
+import Link from 'next/link';
 import {
   Activity,
   ArrowDownLeft,
@@ -35,6 +37,7 @@ const siteLinks = [
   { href: '/chain', label: 'FEM Chain' },
   { href: '/ecosystem', label: 'Ecosystem' },
   { href: '/learn', label: 'Learn' },
+  { href: '/developers', label: 'Developers' },
   { href: '/community', label: 'Community' },
   { href: '/help', label: 'Help' },
 ];
@@ -132,13 +135,13 @@ const pages: Record<string, InfoConfig> = {
     eyebrow: 'FEM / CHAIN',
     title: 'The network behind the',
     emphasis: 'experience.',
-    lede: 'FEM Chain is the network layer associated with the FEM ecosystem. It is intended as a foundation for applications and activity, while technical network details remain unconfirmed here.',
+    lede: 'FEM Chain is EVM-compatible and forms the network layer associated with the FEM ecosystem. Its exact compatibility scope and technical network details are not published here.',
     noteTitle: 'Technical information',
     note: 'No chain ID, RPC endpoint, explorer, token standard, or network configuration is provided on this site.',
     details: [
-      { number: '01', title: 'A place for applications', body: 'FEM Chain is described at a high level as a foundation for applications and experiences within the FEM ecosystem.' },
-      { number: '02', title: 'Details will be published carefully', body: 'Only verified technical information should be used to configure a wallet. No connection settings are included in this preview.' },
-      { number: '03', title: 'Still taking shape', body: 'The public information available here is intentionally limited; there are no performance or security claims.' },
+      { number: '01', title: 'An EVM-compatible foundation', body: 'EVM compatibility gives builders a familiar execution model to explore. The specific FEM implementation details still need official documentation.' },
+      { number: '02', title: 'Tool support needs verification', body: 'Compatibility with EVM does not identify the supported hard fork, JSON-RPC endpoints, standards, or developer tools.' },
+      { number: '03', title: 'Network settings remain unpublished', body: 'Only verified FEM values should be used to configure a wallet. No connection settings are included in this preview.' },
     ],
     cta: { label: 'Explore the ecosystem', href: '/ecosystem' },
   },
@@ -272,7 +275,7 @@ function ChainExplainer() {
           <span className="eyebrow">The confirmed high-level role</span>
           <h2 className="route-heading">A foundation for<br />FEM ecosystem activity.</h2>
         </div>
-        <p>FEM Chain is described as the network layer associated with the FEM ecosystem. This is a conceptual overview only—not a technical guide or a claim about specific capabilities.</p>
+          <p>FEM Chain is EVM-compatible. This is a high-level introduction to the EVM model, not a technical specification for FEM’s implementation.</p>
       </section>
       <div className="chain-role-model" aria-label="Conceptual relationship between FEM Chain and ecosystem experiences">
         <div className="chain-model-top">
@@ -280,7 +283,7 @@ function ChainExplainer() {
           <div className="chain-model-connector" aria-hidden="true"><i /><i /><i /></div>
           <div className="chain-model-node chain-model-outcome"><span>02 / AROUND IT</span><Layers3 aria-hidden="true" /><strong>Applications &amp; activity</strong><small>High-level ecosystem direction</small></div>
         </div>
-        <div className="chain-model-foot"><Info aria-hidden="true" />Illustrative relationship only. No deployed services, architecture, performance, or security properties are represented.</div>
+          <div className="chain-model-foot"><Info aria-hidden="true" />Illustrative relationship only. EVM compatibility does not confirm FEM network settings, supported forks, performance, or security properties.</div>
       </div>
       <section className="chain-unknowns" aria-labelledby="chain-unknowns-title">
         <div className="chain-unknowns-heading">
@@ -289,15 +292,15 @@ function ChainExplainer() {
           <p>Do not configure a wallet or rely on network claims from unofficial sources.</p>
         </div>
         <div className="chain-unknown-list">
-          {['Network configuration', 'Chain ID and RPC endpoint', 'Explorer and network tools', 'Technical specifications or metrics'].map((item, index) => (
+            {['Chain ID and RPC endpoint', 'Explorer and network tools', 'Supported EVM fork and features', 'Gas asset and technical specifications'].map((item, index) => (
             <div className="chain-unknown" key={item}><span>0{index + 1}</span><strong>{item}</strong><small>Not confirmed</small></div>
           ))}
         </div>
       </section>
       <div className="route-next-steps">
-        <div><Compass aria-hidden="true" /><span><strong>Explore with context</strong><small>Browse the ecosystem directory status.</small></span></div>
-        <Link className="button button-primary" href="/ecosystem" data-testid="link-chain-ecosystem">
-          View directory status <ArrowRight aria-hidden="true" />
+        <div><Compass aria-hidden="true" /><span><strong>Build with context</strong><small>Read general EVM guidance for builders.</small></span></div>
+        <Link className="button button-primary" href="/developers/evm" data-testid="link-chain-evm">
+          Explore EVM basics <ArrowRight aria-hidden="true" />
         </Link>
       </div>
     </div>
