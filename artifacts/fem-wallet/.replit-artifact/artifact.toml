@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "FEM Wallet & Chain"
+description = "A public website introducing FEM Wallet and FEM Chain, with product information, ecosystem discovery, and paths to get the app and join the community."
+version = "1.0.0"
+id = "artifacts/fem-wallet"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25465
+
+[services.development]
+run = "pnpm --filter @workspace/fem-wallet run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/fem-wallet", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/fem-wallet/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25465"
+BASE_PATH = "/"
