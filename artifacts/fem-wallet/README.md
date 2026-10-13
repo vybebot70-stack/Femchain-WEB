@@ -45,7 +45,7 @@ The build uses Next.js static export and writes the site to `artifacts/fem-walle
 
 The repository root contains a Vercel Services configuration in `vercel.json`. Import the repository with the Vercel project root set to the repository root so that it can read the service definitions and pnpm workspace.
 
-The current routing draft:
+The configured routing:
 
 - `fem-wallet` is public at `/` and handles the site's pages.
 - `api-server` is included as an internal service. The FEM site does not currently call it; its only application endpoint is `/api/healthz`.

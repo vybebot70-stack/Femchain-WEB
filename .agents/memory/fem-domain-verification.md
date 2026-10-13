@@ -18,3 +18,9 @@ The FEM deliverable is an informational product website, not an in-browser walle
 **Why:** The user's EVM clarification guides relevant education and implementation patterns, but does not establish FEM's chain ID, RPC, explorer, wallet release, or other operational details.
 
 **How to apply:** Distinguish general EVM behavior from FEM-specific facts. Re-check both domains and use current official sources before adding chain specifications, app-download links, community links, network metrics, partnership claims, or claims about released wallet behavior.
+
+For Vercel, the user confirmed that `fem-wallet` should be public at `/` and `api-server` should remain internal. The Replit `mockup-sandbox` is not a production FEM service, and there are no service bindings because the website does not call the API.
+
+**Why:** The API currently only provides a health check and is not used by the static FEM website; publishing it without a product API surface would expose unnecessary routes.
+
+**How to apply:** Keep the API internal unless the user requests public API routes or the website gains server-side calls that need a Vercel service binding.
