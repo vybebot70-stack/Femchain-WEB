@@ -24,3 +24,9 @@ For Vercel, the user confirmed that `fem-wallet` should be public at `/` and `ap
 **Why:** The API currently only provides a health check and is not used by the static FEM website; publishing it without a product API surface would expose unnecessary routes.
 
 **How to apply:** Keep the API internal unless the user requests public API routes or the website gains server-side calls that need a Vercel service binding.
+
+For Vercel's Next.js framework service, keep the service output directory at `.next` even when `next.config.mjs` uses `output: "export"` and also generates static files under `out/`.
+
+**Why:** Vercel's Next.js builder looks for `routes-manifest.json` in the framework output directory; pointing it at `out/` causes a missing manifest deployment error.
+
+**How to apply:** Use `.next` as the configured Vercel output directory for this service; leave `out/` as the generated static export, not the framework output.

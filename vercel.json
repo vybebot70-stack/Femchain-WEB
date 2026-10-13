@@ -5,7 +5,7 @@
       "root": "artifacts/fem-wallet",
       "framework": "nextjs",
       "buildCommand": "pnpm run build",
-      "outputDirectory": "out"
+      "outputDirectory": ".next"
     },
     "api-server": {
       "root": "artifacts/api-server",

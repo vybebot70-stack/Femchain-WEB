@@ -52,6 +52,6 @@ The configured routing:
 - `mockup-sandbox` is excluded because it is Replit component-preview tooling, not a production FEM service.
 - No service bindings are configured because no service currently calls another service.
 
-The site uses Next.js static export (`output: "export"`) and writes to `out/`. No environment variables are currently required for the site.
+The site uses Next.js static export (`output: "export"`) and writes static files to `out/`. The Vercel Next.js service uses `.next` as its framework output directory so Vercel can read `routes-manifest.json`; do not override it to `out/`. No environment variables are currently required for the site.
 
 To make the API public on the same domain, add a `/api/(.*)` rewrite to `api-server` before the catch-all rewrite to `fem-wallet`. Confirm that exposure before publishing.
