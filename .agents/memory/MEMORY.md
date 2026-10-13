@@ -1,0 +1,1 @@
+- [FEM domain verification](fem-domain-verification.md) — support domain has policy and support content; the root domain was parked when checked, so reverify it before relying on it.
