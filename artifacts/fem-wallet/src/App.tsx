@@ -315,6 +315,14 @@ function App() {
               <a href="#ecosystem">Ecosystem</a>
               <a href="#community">Community</a>
               <a href="#faq">FAQ</a>
+              <a
+                href="https://help.femchain.online"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="link-help-center"
+              >
+                Help center <ArrowUpRight aria-hidden="true" />
+              </a>
             </nav>
           </div>
           <div className="footer-bottom">
