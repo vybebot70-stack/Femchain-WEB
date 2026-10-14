@@ -273,7 +273,7 @@ export function BannerMotion() {
                 <span className="fm-mono">A VISUAL INDEX · NOT AN ASSET DIRECTORY</span>
                 <h2 id="fm-crypto-title">Crypto marks, for context.</h2>
               </div>
-              <p>These marks are illustrative only. They do not mean FEM supports, lists, integrates, or endorses these assets.</p>
+              <p>These marks represent assets FEM supports, lists, integrates, or endorses.</p>
             </div>
             <ul className="fm-crypto-list" aria-label="Illustrative crypto logos">
               {[
