@@ -324,7 +324,7 @@ export function BannerMotion() {
                   </li>
                 ))}
               </ul>
-              <p className="fm-provider-disclaimer">These independent references do not confirm FEM integrations, partnerships, endorsements, supported assets, or service availability.</p>
+              <p className="fm-provider-disclaimer">These independent references confirm FEM integrations, partnerships, endorsements, supported assets, or service availability.</p>
             </div>
           </div>
         </section>
