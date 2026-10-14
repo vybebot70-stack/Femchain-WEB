@@ -36,3 +36,9 @@ Keep public FEM copy centered on FEM's products and verified capabilities; do no
 **Why:** The user requested a professional FEM brand voice and explicitly asked that public copy not describe products by their implementation origins.
 
 **How to apply:** Keep FEM marketing, help pages, metadata, and route labels focused on FEM. Upstream materials may inform general education but should not be presented as FEM product lineage.
+
+The user wants recognizable FEM, BTC, ETH, SOL, BNB, POL, XRP, and DOGE marks plus wallet/provider brands as animated, non-clickable logo references only.
+
+**Why:** The user requested these recognizable logos, but has not confirmed asset support, compatibility, partnerships, or integrations.
+
+**How to apply:** Do not link logo cards externally. Keep marks illustrative and wallet/provider brands independent; make no availability or affiliation claims until verified through official FEM sources.

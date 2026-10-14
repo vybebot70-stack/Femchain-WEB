@@ -1,0 +1,149 @@
+.fem-motion .fm-coin {
+  z-index: 2; position: relative; width: clamp(180px, 21vw, 258px); aspect-ratio: 1;
+  transform-style: preserve-3d; animation: fm-coin-turn 18s cubic-bezier(.45,.05,.55,.95) infinite;
+  filter: drop-shadow(22px 28px 28px #020817a0);
+}
+.fem-motion .fm-coin-face {
+  position: absolute; z-index: 1; inset: 0; display: grid; place-items: center; overflow: hidden;
+  border: 2px solid #b9d4ff; border-radius: 50%; background: linear-gradient(135deg,#eaf4ff 0%,#5989ed 24%,#1248be 62%,#082260);
+  box-shadow: inset 0 4px 9px #ffffffb0, inset 0 -15px 25px #031947a8, 0 0 48px #417dfb48;
+  transform: translateZ(1px);
+  backface-visibility: hidden;
+}
+.fem-motion .fm-coin-face::before { content: ""; position: absolute; inset: 7%; border: 1px solid #d9e7ff91; border-radius: 50%; box-shadow: inset 0 0 22px #d4e6ff36; }
+.fem-motion .fm-coin-face::after { content: ""; position: absolute; inset: -20%; background: linear-gradient(112deg,transparent 39%,#ffffffb5 48%,#c7ddff66 51%,transparent 60%); transform: translateX(-70%) rotate(15deg); animation: fm-coin-sheen 5.8s ease-in-out infinite; }
+.fem-motion .fm-coin-face img { width: 68%; height: 68%; object-fit: cover; border: 1px solid #ffffff8a; border-radius: 27%; box-shadow: 0 10px 22px #00113d8c; }
+.fem-motion .fm-coin-face span { position: absolute; z-index: 1; bottom: 12%; color: #eff5ff; font: 8px var(--fm-mono); letter-spacing: .3em; text-shadow: 0 2px 5px #071126; }
+.fem-motion .fm-coin-edge { position: absolute; z-index: 0; inset: 4px; border: 5px ridge #9eb9ed; border-radius: 50%; transform: translateZ(-7px); background: repeating-linear-gradient(90deg,#7893c8 0 2px,#c7d8f5 2px 4px); box-shadow: 0 0 0 3px #4269ad, inset 0 0 12px #142f65; }
+.fem-motion .fm-orbit-token { position: absolute; z-index: 3; display: grid; place-items: center; width: 47px; height: 47px; overflow: hidden; border: 1px solid #c1d8ff75; border-radius: 50%; background: linear-gradient(145deg,#456cae,#112750); box-shadow: 0 9px 24px #020817a3, inset 0 1px #fff6; }
+.fem-motion .fm-orbit-token img { width: 23px; height: 23px; filter: brightness(0) invert(1); }
+.fem-motion .fm-token-a { top: 17%; right: 12%; animation: fm-token-float 5s ease-in-out infinite; }
+.fem-motion .fm-token-b { bottom: 18%; left: 12%; width: 37px; height: 37px; animation: fm-token-float 6s ease-in-out infinite reverse; }
+.fem-motion .fm-token-c { top: 10%; left: 20%; width: 41px; height: 41px; animation: fm-token-float 7s ease-in-out infinite; }
+.fem-motion .fm-token-d { right: 13%; bottom: 13%; width: 42px; height: 42px; animation: fm-token-float 6.5s ease-in-out infinite reverse; }
+.fem-motion .fm-token-a { background: linear-gradient(145deg,#ffbd53,#b86411); }
+.fem-motion .fm-token-b { background: linear-gradient(145deg,#8294bb,#394867); }
+.fem-motion .fm-token-c { background: linear-gradient(145deg,#28766f,#123a42); }
+.fem-motion .fm-token-d { background: linear-gradient(145deg,#f6cc58,#a9780d); }
+.fem-motion .fm-coin-disclaimer { max-width: 360px; margin: 10px 0 0 32px; color: #9baeca; font: 7px/1.6 var(--fm-mono); letter-spacing: .025em; }
+.fem-motion .fm-provider-section { padding: 50px 0 54px; border-block: 1px solid #9cbfff19; background: linear-gradient(100deg,#0b1a35,#0e2041 54%,#0b1831); }
+.fem-motion .fm-provider-layout { display: block; }
+.fem-motion .fm-provider-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; }
+.fem-motion .fm-provider-heading > span { color: #8199bd; }
+.fem-motion .fm-provider-heading h2 { margin: 0; color: #eaf2ff; font-size: clamp(25px,3vw,38px); line-height: 1.04; letter-spacing: -.065em; }
+.fem-motion .fm-provider-heading h2 em { color: #80a9ff; font-family: var(--fm-serif); font-weight: 400; }
+.fem-motion .fm-provider-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 9px; }
+.fem-motion .fm-provider-mark { min-height: 58px; padding: 10px 12px; display: flex; align-items: center; gap: 10px; border: 1px solid #a9c5f529; border-radius: 12px; color: #dce8fc; background: #ffffff07; animation: fm-card-float 5.2s ease-in-out infinite; }
+.fem-motion .fm-provider-list img { width: 26px; height: 26px; object-fit: contain; flex: none; filter: brightness(0) invert(1); animation: fm-logo-rock 4.2s ease-in-out infinite; }
+.fem-motion .fm-provider-list li:nth-child(2) img { width: 54px; }
+.fem-motion .fm-provider-list li:nth-child(3) img { width: 42px; }
+.fem-motion .fm-provider-list span { font-size: 9px; font-weight: 700; }
+.fem-motion .fm-provider-list li:nth-child(4n+2) .fm-provider-mark,
+.fem-motion .fm-provider-list li:nth-child(4n+2) img { animation-delay: -1.1s; }
+.fem-motion .fm-provider-list li:nth-child(4n+3) .fm-provider-mark,
+.fem-motion .fm-provider-list li:nth-child(4n+3) img { animation-delay: -2.2s; }
+.fem-motion .fm-provider-list li:nth-child(4n) .fm-provider-mark,
+.fem-motion .fm-provider-list li:nth-child(4n) img { animation-delay: -3.3s; }
+.fem-motion .fm-provider-disclaimer { margin: 13px 0 0; color: #a0b0ca; font-size: 9px; line-height: 1.65; }
+.fem-motion .fm-provider-content { margin-top: 24px; }
+.fem-motion .fm-wallet-references { padding: 72px 0 78px; border-bottom: 1px solid #9cbfff18; background: linear-gradient(180deg,#0b1932,#0c1b35); }
+.fem-motion .fm-wallet-references-head { display: flex; align-items: end; justify-content: space-between; gap: 32px; margin-bottom: 25px; }
+.fem-motion .fm-wallet-references-head h2 { margin: 13px 0 0; color: #eaf2ff; font-size: clamp(27px,3.4vw,42px); line-height: 1; letter-spacing: -.07em; }
+.fem-motion .fm-wallet-references-head > p { max-width: 440px; margin: 0 0 2px; color: #a5b4cc; font-size: 10px; line-height: 1.75; }
+.fem-motion .fm-wallet-reference-list { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 11px; padding: 0; margin: 0; list-style: none; }
+.fem-motion .fm-wallet-reference-card { min-height: 82px; display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 1px solid #a9c5f522; border-radius: 15px; color: #edf3ff; background: linear-gradient(135deg,#102443,#0d1b35); animation: fm-card-float 5.2s ease-in-out infinite; }
+.fem-motion .fm-wallet-ref-mark { width: 48px; height: 48px; flex: none; display: grid; place-items: center; overflow: hidden; padding: 8px; border-radius: 13px; background: #edf2fc; }
+.fem-motion .fm-wallet-ref-mark img { width: 100%; height: 100%; object-fit: contain; animation: fm-logo-rock 4.2s ease-in-out infinite; }
+.fem-motion .fm-wallet-ref-mark.is-trust-wallet { background: #e4f3ee; }
+.fem-motion .fm-wallet-ref-mark.is-onekey { background: #f5f6f8; }
+.fem-motion .fm-wallet-ref-mark.is-metamask { background: #fff0e7; }
+.fem-motion .fm-wallet-ref-mark.is-phantom { background: #eeebff; }
+.fem-motion .fm-wallet-ref-mark.is-ledger { background: #f3f3f5; }
+.fem-motion .fm-wallet-ref-mark.is-trezor { background: #e8f4f8; }
+.fem-motion .fm-wallet-ref-name { font-size: 12px; font-weight: 700; letter-spacing: -.02em; }
+.fem-motion .fm-wallet-reference-list li:nth-child(3n+2) .fm-wallet-reference-card,
+.fem-motion .fm-wallet-reference-list li:nth-child(3n+2) img { animation-delay: -1.4s; }
+.fem-motion .fm-wallet-reference-list li:nth-child(3n) .fm-wallet-reference-card,
+.fem-motion .fm-wallet-reference-list li:nth-child(3n) img { animation-delay: -2.8s; }
+.fem-motion .fm-crypto-logos { padding: 31px 0 35px; border-bottom: 1px solid #9cbfff18; background: #091832; }
+.fem-motion .fm-crypto-intro { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 20px; }
+.fem-motion .fm-crypto-intro > div > span { color: #8299bc; }
+.fem-motion .fm-crypto-intro h2 { margin: 8px 0 0; color: #eaf2ff; font-size: clamp(19px,2.1vw,25px); letter-spacing: -.055em; }
+.fem-motion .fm-crypto-intro > p { max-width: 430px; margin: 0; color: #a5b4cc; font-size: 9px; line-height: 1.7; }
+.fem-motion .fm-crypto-list { display: grid; grid-template-columns: repeat(8,minmax(0,1fr)); gap: 8px; padding: 0; margin: 0; list-style: none; }
+.fem-motion .fm-crypto-item { min-width: 0; min-height: 58px; display: flex; align-items: center; gap: 9px; padding: 8px; border: 1px solid #a9c5f51d; border-radius: 12px; background: #ffffff05; animation: fm-card-float 5.2s ease-in-out infinite; }
+.fem-motion .fm-crypto-icon { width: 32px; height: 32px; flex: none; display: grid; place-items: center; padding: 7px; border-radius: 10px; background: #4c5f80; animation: fm-logo-rock 4.2s ease-in-out infinite; }
+.fem-motion .fm-crypto-icon img { width: 100%; height: 100%; object-fit: contain; filter: brightness(0) invert(1); }
+.fem-motion .fm-crypto-item span { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.fem-motion .fm-crypto-item strong { color: #eef4ff; font: 9px var(--fm-mono); letter-spacing: .07em; }
+.fem-motion .fm-crypto-item small { overflow: hidden; color: #a5b4cc; font-size: 8px; text-overflow: ellipsis; white-space: nowrap; }
+.fem-motion .fm-crypto-item.is-fem > .fm-crypto-icon { padding: 0; background: #1747aa; }
+.fem-motion .fm-crypto-item.is-fem .fm-crypto-icon img { filter: none; border-radius: 9px; }
+.fem-motion .fm-crypto-item.is-bitcoin > .fm-crypto-icon { background: #ca7419; }
+.fem-motion .fm-crypto-item.is-ethereum > .fm-crypto-icon { background: #536384; }
+.fem-motion .fm-crypto-item.is-solana > .fm-crypto-icon { background: #137a72; }
+.fem-motion .fm-crypto-item.is-bnb > .fm-crypto-icon { background: #b58617; }
+.fem-motion .fm-crypto-item.is-polygon > .fm-crypto-icon { background: #7944bc; }
+.fem-motion .fm-crypto-item.is-xrp > .fm-crypto-icon { background: #46556d; }
+.fem-motion .fm-crypto-item.is-dogecoin > .fm-crypto-icon { background: #ad8521; }
+.fem-motion .fm-crypto-list li:nth-child(4n+2),
+.fem-motion .fm-crypto-list li:nth-child(4n+2) .fm-crypto-icon { animation-delay: -1.1s; }
+.fem-motion .fm-crypto-list li:nth-child(4n+3),
+.fem-motion .fm-crypto-list li:nth-child(4n+3) .fm-crypto-icon { animation-delay: -2.2s; }
+.fem-motion .fm-crypto-list li:nth-child(4n),
+.fem-motion .fm-crypto-list li:nth-child(4n) .fm-crypto-icon { animation-delay: -3.3s; }
+@keyframes fm-card-float { 0%,100% { translate: 0 0; } 50% { translate: 0 -4px; } }
+@keyframes fm-logo-rock { 0%,100% { transform: translateY(0) rotate(-3deg) scale(1); } 50% { transform: translateY(-5px) rotate(4deg) scale(1.05); } }
+@media (prefers-reduced-motion: reduce) {
+  .fem-motion .fm-provider-mark, .fem-motion .fm-provider-list img,
+  .fem-motion .fm-wallet-reference-card, .fem-motion .fm-wallet-ref-mark img,
+  .fem-motion .fm-crypto-item, .fem-motion .fm-crypto-icon {
+    animation: none !important;
+    translate: none !important;
+    transform: none !important;
+  }
+}
+@media (max-width: 1050px) {
+  .fem-motion .fm-provider-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .fem-motion .fm-crypto-list { grid-template-columns: repeat(auto-fit, minmax(min(100%, 125px), 1fr)); }
+}
+@keyframes fm-coin-turn { 0%,100% { transform: translateY(0) rotateX(7deg) rotateY(-12deg) rotateZ(-4deg); } 25% { transform: translateY(-7px) rotateX(10deg) rotateY(5deg) rotateZ(-2deg); } 50% { transform: translateY(-2px) rotateX(6deg) rotateY(16deg) rotateZ(3deg); } 75% { transform: translateY(-8px) rotateX(11deg) rotateY(1deg) rotateZ(-2deg); } }
+@keyframes fm-coin-sheen { 0%,15% { transform: translateX(-75%) rotate(15deg); opacity: 0; } 38% { opacity: .65; } 62%,100% { transform: translateX(75%) rotate(15deg); opacity: 0; } }
+@keyframes fm-token-float { 0%,100% { translate: 0 0; } 50% { translate: 0 -11px; } }
+@media (max-width: 850px) {
+  .fem-motion .fm-coin { width: 174px; }
+  .fem-motion .fm-stage { margin-top: -22px; }
+  .fem-motion .fm-coin { translate: 0 -44px; }
+  .fem-motion .fm-coin-edge { border-width: 5px; }
+  .fem-motion .fm-orbit-token { width: 38px; height: 38px; }
+  .fem-motion .fm-token-a { right: 8%; }
+  .fem-motion .fm-token-b { left: 8%; }
+  .fem-motion .fm-provider-heading { align-items: flex-start; flex-direction: column; gap: 10px; }
+  .fem-motion .fm-provider-heading h2 { font-size: 31px; }
+  .fem-motion .fm-provider-content { margin-top: 20px; }
+  .fem-motion .fm-provider-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fem-motion .fm-wallet-references { padding: 58px 0 62px; }
+  .fem-motion .fm-wallet-references-head { align-items: flex-start; flex-direction: column; gap: 12px; }
+  .fem-motion .fm-wallet-reference-list { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+  .fem-motion .fm-wallet-reference-card { min-height: 72px; gap: 9px; padding: 10px; }
+  .fem-motion .fm-wallet-ref-mark { width: 42px; height: 42px; padding: 7px; }
+  .fem-motion .fm-wallet-ref-name { font-size: 10px; }
+  .fem-motion .fm-crypto-intro { align-items: flex-start; flex-direction: column; gap: 9px; }
+  .fem-motion .fm-crypto-list { grid-template-columns: repeat(4,minmax(0,1fr)); }
+  .fem-motion .fm-crypto-item { gap: 6px; padding: 7px; }
+  .fem-motion .fm-crypto-icon { width: 28px; height: 28px; padding: 6px; }
+  .fem-motion .fm-crypto-item.is-fem > .fm-crypto-icon { padding: 0; }
+  .fem-motion .fm-crypto-item strong { font-size: 8px; }
+  .fem-motion .fm-crypto-item small { font-size: 7px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fem-motion .fm-coin, .fem-motion .fm-coin-face::after,
+  .fem-motion .fm-orbit, .fem-motion .fm-orbit-token,
+  .fem-motion .fm-float-panel, .fem-motion .fm-globe-halo,
+  .fem-motion .fm-scanline, .fem-motion .fm-banner-crop img,
+  .fem-motion .fm-wallet-orbit, .fem-motion .fm-product-card,
+  .fem-motion .fm-community-sphere {
+    animation: none !important;
+  }
+  .fem-motion .fm-coin { transform: none; }
+}

@@ -228,17 +228,25 @@ export function BannerMotion() {
                 <a className="fm-text-link" href="/learn" data-testid="link-hero-learn">Start learning <ArrowRight aria-hidden="true" /></a>
               </div>
               <div className="fm-hero-note"><span className="fm-note-rule" />WALLET + NETWORK, DESIGNED TO WORK TOGETHER</div>
+              <p className="fm-coin-disclaimer">Decorative coin artwork only. No issued token, listing, price, balance, or investment product is implied.</p>
             </div>
 
-            <div className="fm-stage" aria-label="FEM mark surrounded by wallet and chain signals">
+            <div className="fm-stage" aria-hidden="true">
               <div className="fm-stage-glow" />
               <div className="fm-orbit fm-orbit-a" />
               <div className="fm-orbit fm-orbit-b" />
               <div className="fm-orbit fm-orbit-c" />
-              <div className="fm-stage-core" aria-label="FEM">
-                <span>FEM</span>
-                <small>ONCHAIN ECOSYSTEM</small>
+              <div className="fm-coin">
+                <div className="fm-coin-face">
+                  <img src="/provider-logos/fem-coin-mark.webp" alt="" />
+                  <span>FEM</span>
+                </div>
+                <div className="fm-coin-edge" />
               </div>
+              <span className="fm-orbit-token fm-token-a"><img src="/crypto-logos/bitcoin.svg" alt="" /></span>
+              <span className="fm-orbit-token fm-token-b"><img src="/crypto-logos/ethereum.svg" alt="" /></span>
+              <span className="fm-orbit-token fm-token-c"><img src="/crypto-logos/solana.svg" alt="" /></span>
+              <span className="fm-orbit-token fm-token-d"><img src="/crypto-logos/bnbchain.svg" alt="" /></span>
               <div className="fm-float-panel fm-panel-wallet">
                 <span className="fm-panel-icon"><Wallet aria-hidden="true" /></span>
                 <span><b>FEM WALLET</b><small>A familiar starting point</small></span>
@@ -253,6 +261,102 @@ export function BannerMotion() {
               <div className="fm-stage-index">FEM / <span>01—04</span></div>
             </div>
             <a className="fm-scroll-cue" href="#about"><span /> Scroll to explore</a>
+          </div>
+        </section>
+
+        <section className="fm-crypto-logos" aria-labelledby="fm-crypto-title">
+          <div className="fm-wrap">
+            <div className="fm-crypto-intro">
+              <div>
+                <span className="fm-mono">A VISUAL INDEX · NOT AN ASSET DIRECTORY</span>
+                <h2 id="fm-crypto-title">Crypto marks, for context.</h2>
+              </div>
+              <p>These marks are illustrative only. They do not mean FEM supports, lists, integrates, or endorses these assets.</p>
+            </div>
+            <ul className="fm-crypto-list" aria-label="Illustrative crypto logos">
+              {[
+                ["FEM", "FEM mark", "/provider-logos/fem-coin-mark.webp", "fem"],
+                ["BTC", "Bitcoin", "/crypto-logos/bitcoin.svg", "bitcoin"],
+                ["ETH", "Ethereum", "/crypto-logos/ethereum.svg", "ethereum"],
+                ["SOL", "Solana", "/crypto-logos/solana.svg", "solana"],
+                ["BNB", "BNB Chain", "/crypto-logos/bnbchain.svg", "bnb"],
+                ["POL", "Polygon", "/crypto-logos/polygon.svg", "polygon"],
+                ["XRP", "XRP", "/crypto-logos/xrp.svg", "xrp"],
+                ["DOGE", "Dogecoin", "/crypto-logos/dogecoin.svg", "dogecoin"],
+              ].map(([ticker, name, logo, className]) => (
+                <li className={`fm-crypto-item is-${className}`} key={ticker}>
+                  <div className="fm-crypto-icon">
+                    <img src={logo} alt={`${ticker} — ${name} logo`} />
+                  </div>
+                  <span><strong>{ticker}</strong><small>{name}</small></span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className="fm-provider-section" aria-labelledby="fm-provider-title">
+          <div className="fm-wrap fm-provider-layout">
+            <div className="fm-provider-heading">
+              <span className="fm-mono">INDEPENDENT ECOSYSTEM REFERENCES</span>
+              <h2 id="fm-provider-title">A wider onchain<br /><em>landscape.</em></h2>
+            </div>
+            <div className="fm-provider-content">
+              <ul className="fm-provider-list">
+                {[
+                  ["0x", "0x.svg"],
+                  ["Uniswap", "uniswap.svg"],
+                  ["Onramper", "onramper.svg"],
+                  ["WalletConnect", "walletconnect.svg"],
+                  ["Chainlink", "chainlink.svg"],
+                  ["Robinhood", "robinhood.svg"],
+                  ["Coinbase", "coinbase.svg"],
+                  ["Binance", "binance.svg"],
+                  ["OKX", "okx.svg"],
+                  ["KuCoin", "kucoin.svg"],
+                  ["CoinMarketCap", "coinmarketcap.svg"],
+                ].map(([name, logo]) => (
+                  <li key={name}>
+                    <div className="fm-provider-mark">
+                      <img src={`/provider-logos/${logo}`} alt="" aria-hidden="true" />
+                      <span>{name}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              <p className="fm-provider-disclaimer">These independent references do not confirm FEM integrations, partnerships, endorsements, supported assets, or service availability.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="fm-wallet-references" aria-labelledby="fm-wallet-references-title">
+          <div className="fm-wrap">
+            <div className="fm-wallet-references-head">
+              <div>
+                <span className="fm-eyebrow"><i /> INDEPENDENT WALLET & DEVICE REFERENCES</span>
+                <h2 id="fm-wallet-references-title">Tools beyond FEM.</h2>
+              </div>
+              <p>These are independent external references—not FEM integrations, partnerships, endorsements, supported wallets, or verified compatibility.</p>
+            </div>
+            <ul className="fm-wallet-reference-list">
+              {[
+                ["Trust Wallet", "trustwallet.webp"],
+                ["OneKey", "onekey.png"],
+                ["MetaMask", "metamask.svg"],
+                ["Phantom", "phantom.svg"],
+                ["Ledger", "ledger.png"],
+                ["Trezor", "trezor.png"],
+              ].map(([name, logo]) => (
+                <li key={name}>
+                  <div className="fm-wallet-reference-card">
+                    <span className={`fm-wallet-ref-mark is-${name.toLowerCase().replaceAll(" ", "-")}`}>
+                      <img src={`/wallet-logos/${logo}`} alt="" aria-hidden="true" />
+                    </span>
+                    <span className="fm-wallet-ref-name">{name}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 
@@ -392,7 +496,7 @@ export function BannerMotion() {
             </nav>
           </div>
           <div className="fm-footer-bottom">
-            <span>© {new Date().getFullYear()} FEM. An introduction, not an investment offer.</span>
+            <span>© {new Date().getFullYear()} FEM. Coin artwork is decorative only; no issued token, listing, price, balance, or investment product is implied.</span>
             <span>PRODUCT ACCESS LINKS ARE SHARED ONLY WHEN VERIFIED.</span>
           </div>
         </div>
