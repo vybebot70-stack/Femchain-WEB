@@ -13,26 +13,34 @@ import {
   Wallet,
 } from "lucide-react";
 
+import BuildOnFemGuide from "./BuildOnFemGuide";
 import { RouteFooter, RouteHeader } from "./Pages";
 
 const topics = [
   {
-    href: "/developers/evm",
+    href: "/developers/build",
     number: "01",
+    title: "Build on FEM Chain",
+    copy: "A practical path from a local EVM project to a carefully verified FEM deployment.",
+    icon: Code2,
+  },
+  {
+    href: "/developers/evm",
+    number: "02",
     title: "EVM, explained",
     copy: "A shared execution model for smart-contract bytecode, state changes, and transaction processing.",
     icon: Layers3,
   },
   {
     href: "/developers/contracts",
-    number: "02",
+    number: "03",
     title: "Smart contracts",
     copy: "Explore Solidity, contract testing, and the checks to make before using any EVM network.",
     icon: Braces,
   },
   {
     href: "/developers/wallets",
-    number: "03",
+    number: "04",
     title: "Wallet integrations",
     copy: "Understand common EVM wallet-provider patterns without guessing FEM network values.",
     icon: Wallet,
@@ -147,7 +155,7 @@ function DevelopersHub() {
             <h1>Build on a<br /><em>familiar EVM.</em></h1>
             <p>FEM Chain is EVM-compatible. Start with the shared concepts, then verify FEM's network details and supported features before connecting tools or deploying code.</p>
             <div className="dev-hero-actions">
-              <Link className="button button-primary" href="/developers/evm">Explore EVM basics <ArrowRight aria-hidden="true" /></Link>
+              <Link className="button button-primary" href="/developers/build">Build on FEM Chain <ArrowRight aria-hidden="true" /></Link>
               <Link className="button button-light" href="/chain">FEM Chain overview <ArrowUpRight aria-hidden="true" /></Link>
             </div>
           </div>
@@ -226,11 +234,12 @@ function DeveloperGuide({ path }: { path: keyof typeof guides }) {
 
 export default function DevelopersPage({ path }: { path: string }) {
   const isHub = path === "/developers";
+  const isBuildGuide = path === "/developers/build";
   const isKnownGuide = path in guides;
   return (
     <div className="site-shell">
       <RouteHeader />
-      {isHub ? <DevelopersHub /> : isKnownGuide ? <DeveloperGuide path={path as keyof typeof guides} /> : null}
+      {isHub ? <DevelopersHub /> : isBuildGuide ? <BuildOnFemGuide /> : isKnownGuide ? <DeveloperGuide path={path as keyof typeof guides} /> : null}
       <RouteFooter />
     </div>
   );
