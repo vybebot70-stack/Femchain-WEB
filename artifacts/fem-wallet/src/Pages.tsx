@@ -12,10 +12,11 @@ import {
   Compass,
   ExternalLink,
   Fingerprint,
-  FolderSearch,
   Info,
   KeyRound,
   Layers3,
+  ArrowLeftRight,
+  ScanSearch,
   Menu,
   Network,
   ShieldCheck,
@@ -29,6 +30,8 @@ const helpUrl = 'https://help.femchain.online';
 const siteLinks = [
   { href: '/wallet', label: 'Wallet' },
   { href: '/chain', label: 'FEM Chain' },
+  { href: '/swap', label: 'FEMSwap' },
+  { href: '/scout', label: 'FEMScout' },
   { href: '/ecosystem', label: 'Ecosystem' },
   { href: '/learn', label: 'Learn' },
   { href: '/developers', label: 'Developers' },
@@ -43,7 +46,7 @@ export function RouteHeader() {
       <div className="wrap route-header-inner">
         <Link href="/" className="brand" aria-label="FEM home">
           <img src={logo} alt="" width="35" height="35" />
-          <span>FEM<small>WALLET + CHAIN</small></span>
+          <span>FEM<small>ONCHAIN ECOSYSTEM</small></span>
         </Link>
         <button
           className="route-menu-toggle"
@@ -67,8 +70,8 @@ export function RouteHeader() {
               {item.label}
             </Link>
           ))}
-          <Link href="/wallet" className="button button-primary" onClick={() => setMenuOpen(false)} data-testid="link-route-nav-wallet">
-            Wallet overview <ArrowRight aria-hidden="true" />
+          <Link href="/ecosystem" className="button button-primary" onClick={() => setMenuOpen(false)} data-testid="link-route-nav-products">
+            Explore products <ArrowRight aria-hidden="true" />
           </Link>
         </nav>
       </div>
@@ -80,7 +83,7 @@ export function RouteFooter() {
   return (
     <footer className="route-footer">
       <div className="wrap route-footer-row">
-        <span>FEM / WALLET + CHAIN · An introduction, not an investment offer.</span>
+        <span>FEM / ONCHAIN ECOSYSTEM · An introduction, not an investment offer.</span>
         <nav className="route-footer-links" aria-label="Footer navigation">
           <Link href="/">Home</Link>
           {siteLinks.map((item) => (
@@ -134,24 +137,24 @@ const pages: Record<string, InfoConfig> = {
     note: 'No chain ID, RPC endpoint, explorer, token standard, or network configuration is provided on this site.',
     details: [
       { number: '01', title: 'An EVM-compatible foundation', body: 'EVM compatibility gives builders a familiar execution model to explore. The specific FEM implementation details still need official documentation.' },
-      { number: '02', title: 'Tool support needs verification', body: 'Compatibility with EVM does not identify the supported hard fork, JSON-RPC endpoints, standards, or developer tools.' },
+      { number: '02', title: 'Tool support needs verification', body: 'Compatibility with EVM does not identify supported protocol upgrades, JSON-RPC endpoints, standards, or developer tools.' },
       { number: '03', title: 'Network settings remain unpublished', body: 'Only verified FEM values should be used to configure a wallet. No connection settings are included in this preview.' },
     ],
     cta: { label: 'Explore the ecosystem', href: '/ecosystem' },
   },
   '/ecosystem': {
     eyebrow: 'FEM / ECOSYSTEM',
-    title: 'Room for what comes',
-    emphasis: 'next.',
-    lede: 'The FEM ecosystem is a place for applications, ideas, and people to take shape around FEM Chain. Public project listings are not available yet.',
-    noteTitle: 'No project directory yet',
-    note: 'We have not listed projects or tools because there are no verified destinations to share at this time.',
+    title: 'Four core products,',
+    emphasis: 'in view.',
+    lede: 'Explore the roles of FEM Wallet, FEM Chain, FEMSwap and FEMScout through clear product overviews. This directory explains purpose without suggesting live app access.',
+    noteTitle: 'Core products vs. external listings',
+    note: 'These four pages describe FEM products. External projects, community destinations and operational endpoints remain unverified.',
     details: [
-      { number: '01', title: 'Applications', body: 'There are no verified application links to feature yet.' },
-      { number: '02', title: 'Tools', body: 'Network tools and ecosystem resources will be added when official destinations are confirmed.' },
-      { number: '03', title: 'A useful directory', body: 'This page will become a place to find real FEM ecosystem destinations, not speculative listings.' },
+      { number: '01', title: 'Explore products', body: 'Read about the purpose and current availability of FEM Wallet, FEM Chain, FEMSwap and FEMScout.' },
+      { number: '02', title: 'Learn the concepts', body: 'Guides explain wallets, EVM execution, token swaps and block explorers in general terms.' },
+      { number: '03', title: 'External destinations', body: 'Third-party projects, community channels and operating links are distinct from these product overviews and are not listed until verified.' },
     ],
-    empty: { title: 'The directory is not open yet.', body: 'There are no projects to browse today. Check back as official FEM ecosystem information becomes available.' },
+    empty: { title: 'Core products, clearly described.', body: 'The cards are product overviews, not a directory of verified third-party tools or live services.' },
     cta: { label: 'Read about FEM Chain', href: '/chain' },
   },
   '/community': {
@@ -188,6 +191,41 @@ const pages: Record<string, InfoConfig> = {
       { id: 'terms', label: 'Terms of service', body: 'Terms for using the FEM Wallet help website.', href: `${helpUrl}/terms-of-service.html` },
     ],
     cta: { label: 'Open the official help center', href: helpUrl },
+  },
+};
+
+const productPages: Record<string, InfoConfig> = {
+  '/swap': {
+    eyebrow: 'FEM / PRODUCT / SWAP',
+    title: 'A clearer way to think about',
+    emphasis: 'token swaps.',
+    lede: 'FEMSwap is presented as a product for token swapping within the FEM ecosystem. This page introduces its purpose; it is not a trading interface or a live service.',
+    noteTitle: 'Availability and details',
+    note: 'Do not assume a live pool, supported token, network, fee, contract, quote or working app destination. Verify current details with official support information.',
+    details: [
+      { number: '01', title: 'A product overview', body: 'FEMSwap is associated with swapping tokens. This informational page has no trading controls and does not connect to a wallet.' },
+      { number: '02', title: 'Understand the mechanics', body: 'General swap concepts include liquidity pools, price impact and slippage. Actual deployments, features and fees require verification.' },
+      { number: '03', title: 'Official support resources', body: 'The official FEM Help Center publishes FEMSwap FAQ and support pages. These are the verified references provided here.' },
+    ],
+    resources: [
+      { id: 'swap-faq', label: 'FEMSwap FAQ', body: 'Official answers about FEMSwap. Check current details directly with the help center.', href: 'https://help.femchain.online/femswap-faq.html' },
+      { id: 'swap-support', label: 'FEMSwap support', body: 'Official support guidance for FEMSwap questions.', href: 'https://help.femchain.online/femswap-support.html' },
+    ],
+    cta: { label: 'Learn how swaps work', href: '/learn/swaps' },
+  },
+  '/scout': {
+    eyebrow: 'FEM / PRODUCT / EXPLORER',
+    title: 'See how onchain records',
+    emphasis: 'become legible.',
+    lede: 'FEMScout is described as the FEM Chain explorer: a way to inspect public blockchain activity. This page explains the explorer’s role, without presenting live FEM data.',
+    noteTitle: 'No live explorer destination',
+    note: 'An official FEMScout URL or data endpoint has not been confirmed. No search, chain status, address or transaction data is shown here.',
+    details: [
+      { number: '01', title: 'A window into public records', body: 'Block explorers generally organize public network information so people can inspect blocks, transactions and addresses.' },
+      { number: '02', title: 'Verify what a record says', body: 'An explorer can help you review transaction status and details, but it cannot make an unfamiliar request trustworthy.' },
+      { number: '03', title: 'FEMScout, at a glance', body: 'FEMScout is the explorer concept associated with FEM Chain. Its official destination and live data are not linked here.' },
+    ],
+    cta: { label: 'Learn about block explorers', href: '/learn/explorers' },
   },
 };
 
@@ -277,7 +315,7 @@ function ChainExplainer() {
           <div className="chain-model-connector" aria-hidden="true"><i /><i /><i /></div>
           <div className="chain-model-node chain-model-outcome"><span>02 / AROUND IT</span><Layers3 aria-hidden="true" /><strong>Applications &amp; activity</strong><small>High-level ecosystem direction</small></div>
         </div>
-          <div className="chain-model-foot"><Info aria-hidden="true" />Illustrative relationship only. EVM compatibility does not confirm FEM network settings, supported forks, performance, or security properties.</div>
+          <div className="chain-model-foot"><Info aria-hidden="true" />Illustrative relationship only. EVM compatibility does not confirm FEM network settings, supported protocol upgrades, performance, or security properties.</div>
       </div>
       <section className="chain-unknowns" aria-labelledby="chain-unknowns-title">
         <div className="chain-unknowns-heading">
@@ -286,7 +324,7 @@ function ChainExplainer() {
           <p>Do not configure a wallet or rely on network claims from unofficial sources.</p>
         </div>
         <div className="chain-unknown-list">
-            {['Chain ID and RPC endpoint', 'Explorer and network tools', 'Supported EVM fork and features', 'Gas asset and technical specifications'].map((item, index) => (
+            {['Chain ID and RPC endpoint', 'Explorer and network tools', 'Supported EVM execution version and features', 'Gas asset and technical specifications'].map((item, index) => (
             <div className="chain-unknown" key={item}><span>0{index + 1}</span><strong>{item}</strong><small>Not confirmed</small></div>
           ))}
         </div>
@@ -302,33 +340,34 @@ function ChainExplainer() {
 }
 
 function EcosystemDirectory() {
-  const categories = ['Applications', 'Tools & network resources', 'Community destinations'];
+  const products = [
+    { href: '/wallet', name: 'FEM Wallet', tag: 'MOBILE WALLET', body: 'A mobile-first wallet direction for discovering onchain tools. Official downloads are not announced.', icon: Wallet },
+    { href: '/chain', name: 'FEM Chain', tag: 'EVM-COMPATIBLE NETWORK', body: 'The network layer associated with FEM. Specific settings and technical details remain unpublished.', icon: Network },
+    { href: '/swap', name: 'FEMSwap', tag: 'TOKEN SWAP PRODUCT', body: 'An overview of the FEMSwap product purpose, with verified FAQ and support references.', icon: ArrowLeftRight },
+    { href: '/scout', name: 'FEMScout', tag: 'EXPLORER', body: 'An introduction to the explorer role. No live destination or network data is provided.', icon: ScanSearch },
+  ];
   return (
     <div className="route-feature route-directory-feature">
       <section className="directory-header">
         <div>
           <span className="eyebrow">FEM / DIRECTORY STATUS</span>
-          <h2 className="route-heading">A directory worth<br />trusting takes time.</h2>
+          <h2 className="route-heading">Four core products.<br />External listings, verified.</h2>
         </div>
-        <p>We will only list FEM ecosystem destinations when they can be verified. No projects, tools, or community channels are confirmed for this directory today.</p>
+        <p>The cards below are FEM’s four core product overviews: Wallet, Chain, Swap and FEMScout. They explain product roles, not availability. External projects, community channels and live operating destinations are separate and remain unverified.</p>
       </section>
-      <section className="directory-empty" aria-labelledby="directory-empty-title">
-        <div className="directory-empty-art"><FolderSearch aria-hidden="true" /><span>0 VERIFIED LISTINGS</span></div>
-        <div className="directory-empty-copy">
-          <span className="eyebrow">Nothing listed yet</span>
-          <h3 id="directory-empty-title">The directory is being kept clear until there is something confirmed to share.</h3>
-          <p>This is an intentional empty state—not a list of recommendations. Check back for official destinations rather than relying on lookalike listings.</p>
-        </div>
-      </section>
-      <div className="directory-categories" aria-label="Directory sections awaiting verified listings">
-        {categories.map((category, index) => (
-          <div className="directory-category" key={category}>
-            <span>0{index + 1}</span><strong>{category}</strong><small><i />Awaiting verified destination</small>
-          </div>
+      <section className="ecosystem-product-grid" aria-label="FEM product overviews">
+        {products.map(({ href, name, tag, body, icon: Icon }, index) => (
+          <Link className="ecosystem-product-card" href={href} key={href}>
+            <span className="ecosystem-product-index">0{index + 1} / {tag}</span>
+            <span className="ecosystem-product-icon"><Icon aria-hidden="true" /></span>
+            <h3>{name}</h3><p>{body}</p>
+            <span className="ecosystem-product-link">Read overview <ArrowRight aria-hidden="true" /></span>
+          </Link>
         ))}
-      </div>
+      </section>
+      <p className="ecosystem-integrity-note"><Info aria-hidden="true" />Product information only. These links do not open an app, configure a network or display live data.</p>
       <div className="route-next-steps">
-        <div><Check aria-hidden="true" /><span><strong>Trust the destination, not just the name.</strong><small>Official links will appear here after verification.</small></span></div>
+        <div><Check aria-hidden="true" /><span><strong>Trust the destination, not just the name.</strong><small>External projects and operating destinations await verification.</small></span></div>
         <Link className="button button-primary" href="/chain" data-testid="link-ecosystem-chain">
           Read about FEM Chain <ArrowRight aria-hidden="true" />
         </Link>
@@ -373,6 +412,7 @@ function CommunityGuide() {
 }
 
 function RouteFeature({ path }: { path: string }) {
+  if (path === '/swap' || path === '/scout') return <ProductOverview path={path} />;
   if (path === '/wallet') return <WalletExplainer />;
   if (path === '/chain') return <ChainExplainer />;
   if (path === '/ecosystem') return <EcosystemDirectory />;
@@ -380,8 +420,29 @@ function RouteFeature({ path }: { path: string }) {
   return null;
 }
 
+function ProductOverview({ path }: { path: string }) {
+  const isSwap = path === '/swap';
+  const Icon = isSwap ? ArrowLeftRight : ScanSearch;
+  return (
+    <div className={`product-overview ${isSwap ? 'is-swap' : 'is-scout'}`}>
+      <div className="product-overview-visual">
+        <div className="product-visual-orbit orbit-one" /><div className="product-visual-orbit orbit-two" />
+        <div className="product-visual-core"><Icon aria-hidden="true" /><span>{isSwap ? 'SWAP / CONCEPT' : 'SCOUT / CONCEPT'}</span></div>
+        <span className="product-visual-label">{isSwap ? 'LIQUIDITY · PRICE · REVIEW' : 'BLOCKS · TRANSACTIONS · ADDRESSES'}</span>
+      </div>
+      <section className="product-overview-copy">
+        <span className="eyebrow">{isSwap ? 'A product direction' : 'A public record, made navigable'}</span>
+        <h2 className="route-heading">{isSwap ? 'Understand the exchange before the action.' : 'Follow the record, not a promise.'}</h2>
+        <p>{isSwap ? 'In general, token swaps use market mechanisms such as liquidity pools to exchange one asset for another. Outcomes can be affected by pool depth, price movement and slippage.' : 'Block explorers are interfaces for browsing public blockchain records. Common pages include blocks, transactions and addresses; exact information depends on the network and explorer.'}</p>
+        <Link className="route-text-link" href={isSwap ? '/learn/swaps' : '/learn/explorers'}>Read the general guide <ArrowRight aria-hidden="true" /></Link>
+      </section>
+      <div className="product-overview-foot"><Info aria-hidden="true" /><p>{isSwap ? 'No FEMSwap trading, quote, pool, token list or live service is offered on this website.' : 'No FEMScout search, network status, transaction lookup or live chain data is offered on this website.'}</p></div>
+    </div>
+  );
+}
+
 export function InfoPage({ path }: { path: string }) {
-  const config = pages[path] ?? pages['/wallet'];
+  const config = pages[path] ?? productPages[path] ?? pages['/wallet'];
   const external = config.cta?.href.startsWith('http');
   return (
     <div className="site-shell">
@@ -389,6 +450,7 @@ export function InfoPage({ path }: { path: string }) {
       <main className="route-page">
         <div className="wrap">
           <div className="route-hero">
+            <div className="route-hero-art" aria-hidden="true"><span>F</span><i /><i /></div>
             <div>
               <span className="eyebrow">{config.eyebrow}</span>
               <h1>{config.title}{config.emphasis && <><br /><em>{config.emphasis}</em></>}</h1>
@@ -399,7 +461,7 @@ export function InfoPage({ path }: { path: string }) {
               {config.note}
             </aside>
           </div>
-          {path === '/help' && (
+          {(path === '/help' || path === '/swap') && (
             <div className="route-content route-split">
               <div>
                 <span className="eyebrow">What is confirmed</span>
@@ -426,7 +488,7 @@ export function InfoPage({ path }: { path: string }) {
           {config.resources && (
             <section className="route-resources" aria-labelledby="route-resources-title">
               <div className="route-resource-heading">
-                <span className="eyebrow">Official FEM Wallet Help</span>
+                <span className="eyebrow">{path === '/swap' ? 'Official FEMSwap Help' : 'Official FEM Wallet Help'}</span>
                 <h2 className="route-heading" id="route-resources-title">Support and safety resources.</h2>
               </div>
               <div className="route-resource-grid">

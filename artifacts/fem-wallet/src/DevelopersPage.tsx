@@ -60,7 +60,7 @@ const guides = {
       },
     ],
     caution:
-      "EVM-compatible does not by itself identify FEM's supported hard fork, opcodes, precompiles, JSON-RPC behavior, or fee rules. Use an official FEM specification before configuring tools.",
+      "EVM-compatible does not by itself identify FEM's supported protocol upgrades, opcodes, precompiles, JSON-RPC behavior, or fee rules. Use an official FEM specification before configuring tools.",
     external: {
       label: "Ethereum.org: EVM overview",
       href: "https://ethereum.org/developers/docs/evm/",
@@ -187,6 +187,7 @@ function DeveloperGuide({ path }: { path: keyof typeof guides }) {
     <main className="route-page dev-page">
       <div className="wrap">
         <div className="dev-guide-hero">
+          <div className="route-brand-art" aria-hidden="true"><span>F</span><i /><i /></div>
           <span className="eyebrow">{guide.eyebrow}</span>
           <h1>{guide.title}</h1>
           <p className="route-lede">{guide.lede}</p>

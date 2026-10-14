@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import {
   ArrowDown,
+  ArrowLeftRight,
   ArrowRight,
   ArrowUpRight,
   Blocks,
@@ -12,6 +13,7 @@ import {
   Fingerprint,
   Globe2,
   Menu,
+  ScanSearch,
   Plus,
   Wallet,
   X,
@@ -52,6 +54,20 @@ const ecosystem = [
     href: "/ecosystem",
   },
   {
+    name: "FEMSwap",
+    label: "SWAP PRODUCT",
+    description: "Understand the product direction and learn the general mechanics behind token swaps.",
+    icon: <ArrowLeftRight aria-hidden="true" />,
+    href: "/swap",
+  },
+  {
+    name: "FEMScout",
+    label: "EXPLORER",
+    description: "Learn how an explorer can make public blockchain records easier to inspect.",
+    icon: <ScanSearch aria-hidden="true" />,
+    href: "/scout",
+  },
+  {
     name: "Community",
     label: "TOGETHER",
     description: "Community spaces are on the way—official links will live here when they’re ready.",
@@ -71,7 +87,7 @@ const faq = [
   {
     question: "What is FEM?",
     answer:
-      "FEM brings together a mobile wallet and FEM Chain. FEM Chain is EVM-compatible; its official network settings and supported tools still need to be published.",
+      "FEM is a family of onchain products: FEM Wallet, the EVM-compatible FEM Chain, FEMSwap and FEMScout. This website explains what they are for; official downloads, network settings and live service links are shared only when verified.",
   },
   {
     question: "Do I need to know how blockchains work?",
@@ -84,6 +100,21 @@ const faq = [
       "Download destinations have not been announced yet. When availability is confirmed, this page will point you to the official options. We will not send you to an unofficial download.",
   },
   {
+    question: "Can I use FEMSwap from this website?",
+    answer:
+      "No. This is an informational website, not a swap interface. Do not assume an app, pool, supported token, network, fee or quote is available. See the verified FEMSwap FAQ and support pages for current information.",
+  },
+  {
+    question: "Where is FEMScout?",
+    answer:
+      "FEMScout is described as the FEM Chain explorer, but an official destination and live data endpoint have not been confirmed. This site does not provide explorer search or chain data.",
+  },
+  {
+    question: "What product links are official?",
+    answer:
+      "This site links to product overviews and the verified FEM Help Center. Wallet downloads, network configuration and a live FEMScout destination are not published here.",
+  },
+  {
     question: "How can I join the community?",
     answer:
       "Community destinations are coming soon. Follow the page as it develops, and check back here for verified ways to connect.",
@@ -93,6 +124,8 @@ const faq = [
 const navigation = [
   ["Wallet", "/wallet"],
   ["FEM Chain", "/chain"],
+  ["FEMSwap", "/swap"],
+  ["FEMScout", "/scout"],
   ["Explore", "/ecosystem"],
   ["Learn", "/learn"],
   ["Developers", "/developers"],
@@ -143,7 +176,7 @@ export function BannerMotion() {
         <div className="fm-wrap fm-header-inner">
           <a className="fm-brand" href="/" aria-label="FEM home" onClick={closeMenu}>
             <span className="fm-brand-mark" aria-hidden="true">F</span>
-            <span>FEM<small>WALLET + CHAIN</small></span>
+            <span>FEM<small>ONCHAIN ECOSYSTEM</small></span>
           </a>
           <button
             className="fm-menu-toggle"
@@ -166,8 +199,8 @@ export function BannerMotion() {
                 {label}
               </a>
             ))}
-            <a className="fm-button fm-button-blue fm-nav-cta" href="/wallet" onClick={closeMenu}>
-              About FEM Wallet <ArrowUpRight aria-hidden="true" />
+            <a className="fm-button fm-button-blue fm-nav-cta" href="/ecosystem" onClick={closeMenu}>
+              Explore FEM products <ArrowUpRight aria-hidden="true" />
             </a>
           </nav>
         </div>
@@ -188,9 +221,9 @@ export function BannerMotion() {
             <div className="fm-hero-copy">
               <span className="fm-eyebrow"><i /> An EVM-compatible chain, made approachable</span>
               <h1 id="fm-hero-title"><span>Meet</span><span><em>FEM.</em> Move</span><span>forward.</span></h1>
-              <p>FEM brings a mobile wallet and an EVM-compatible chain together, with a familiar starting point for people and builders.</p>
+              <p>FEM brings a mobile-first wallet, an EVM-compatible chain, a token-swap product and an explorer under one brand, with clear starting points for users and builders.</p>
               <div className="fm-hero-actions">
-                <a className="fm-button fm-button-blue" href="/wallet">About FEM Wallet <ArrowRight aria-hidden="true" /></a>
+                <a className="fm-button fm-button-blue" href="/ecosystem">Explore FEM products <ArrowRight aria-hidden="true" /></a>
                 <a className="fm-button fm-button-ghost" href="/chain">Discover FEM Chain <ArrowDown aria-hidden="true" /></a>
                 <a className="fm-text-link" href="/learn" data-testid="link-hero-learn">Start learning <ArrowRight aria-hidden="true" /></a>
               </div>
@@ -204,7 +237,7 @@ export function BannerMotion() {
               <div className="fm-orbit fm-orbit-c" />
               <div className="fm-stage-core" aria-label="FEM">
                 <span>FEM</span>
-                <small>WALLET + CHAIN</small>
+                <small>ONCHAIN ECOSYSTEM</small>
               </div>
               <div className="fm-float-panel fm-panel-wallet">
                 <span className="fm-panel-icon"><Wallet aria-hidden="true" /></span>
@@ -226,7 +259,7 @@ export function BannerMotion() {
         <div className="fm-intro-strip" aria-label="FEM introduction">
           <div className="fm-wrap fm-strip-inner">
             <span className="fm-mono">A CLEARER STARTING POINT</span>
-            <p>One wallet. A whole chain to discover.</p>
+            <p>Wallet, chain, swap and explorer—one FEM product family.</p>
             <span className="fm-strip-mark">FEM / 001</span>
           </div>
         </div>
@@ -238,7 +271,7 @@ export function BannerMotion() {
                 <span className="fm-eyebrow"><i /> 01 / The idea</span>
                 <h2 className="fm-section-title" id="fm-about-title">Onchain, made<br />more <em>approachable.</em></h2>
               </div>
-              <p>FEM brings the wallet and the network closer together, so getting started feels clear and exploring can come naturally.</p>
+              <p>FEM brings a wallet, an EVM-compatible network, swap tools and a chain explorer into one product family—with room for people to learn and builders to explore.</p>
             </div>
             <div className="fm-intro-grid">
               <div className="fm-intro-aside" data-reveal>
@@ -295,7 +328,7 @@ export function BannerMotion() {
                 <span className="fm-eyebrow"><i /> 03 / The ecosystem</span>
                 <h2 className="fm-section-title" id="fm-ecosystem-title">A chain is a<br /><em>place to build.</em></h2>
               </div>
-              <p>FEM Chain is EVM-compatible. Around it, a broader ecosystem can take shape—one application, idea and community at a time.</p>
+              <p>FEM Chain is EVM-compatible. Explore the role of Wallet, Chain, Swap and FEMScout—without mistaking a product overview for a live app.</p>
             </div>
             <div className="fm-ecosystem-grid">
               {ecosystem.map((item) => (
@@ -307,7 +340,7 @@ export function BannerMotion() {
                 </article>
               ))}
             </div>
-            <div className="fm-chain-note"><span /> Ecosystem destinations and network tools will be announced here.</div>
+            <div className="fm-chain-note"><span /> Product information only. Live apps, chain settings and explorer data are not provided here.</div>
           </div>
         </section>
 
@@ -319,7 +352,7 @@ export function BannerMotion() {
                 <h2>Good things<br />happen <em>together.</em></h2>
                 <p>FEM is a work in progress, and the people around it matter. Community spaces are on the way—official links will live here when they’re ready.</p>
                 <div className="fm-community-actions">
-                  <a className="fm-button fm-button-light" href="/community">Find the community <ArrowUpRight aria-hidden="true" /></a>
+                  <a className="fm-button fm-button-light" href="/learn">Explore FEM Learn <ArrowUpRight aria-hidden="true" /></a>
                   <a className="fm-button fm-button-outline" href="#faq">What is FEM? <CircleHelp aria-hidden="true" /></a>
                 </div>
               </div>
@@ -351,16 +384,16 @@ export function BannerMotion() {
       <footer className="fm-footer">
         <div className="fm-wrap">
           <div className="fm-footer-main">
-            <a className="fm-footer-brand" href="/" aria-label="FEM home"><span>F</span> FEM <small>WALLET + CHAIN</small></a>
+            <a className="fm-footer-brand" href="/" aria-label="FEM home"><span>F</span> FEM <small>ONCHAIN ECOSYSTEM</small></a>
             <nav className="fm-footer-links" aria-label="Footer navigation">
-              <a href="/wallet">Wallet</a><a href="/chain">FEM Chain</a><a href="/ecosystem">Ecosystem</a>
+              <a href="/wallet">Wallet</a><a href="/chain">FEM Chain</a><a href="/swap">FEMSwap</a><a href="/scout">FEMScout</a><a href="/ecosystem">Ecosystem</a>
               <a href="/learn" data-testid="link-home-footer-learn">Learn</a><a href="/developers">Developers</a><a href="/community">Community</a><a href="/help">Help</a>
               <a href="https://help.femchain.online" target="_blank" rel="noopener noreferrer" data-testid="link-help-center">Help center <ArrowUpRight aria-hidden="true" /></a>
             </nav>
           </div>
           <div className="fm-footer-bottom">
             <span>© {new Date().getFullYear()} FEM. An introduction, not an investment offer.</span>
-            <span>EXTERNAL LINKS WILL BE VERIFIED BEFORE THEY APPEAR HERE.</span>
+            <span>PRODUCT ACCESS LINKS ARE SHARED ONLY WHEN VERIFIED.</span>
           </div>
         </div>
       </footer>

@@ -1,6 +1,6 @@
-# FEM Wallet & Chain
+# FEM Ecosystem Website
 
-The FEM website introduces FEM Wallet and FEM Chain, with informational pages for the ecosystem, learning resources, EVM development concepts, and verified support links. It is a product website, not a functional wallet: it does not connect accounts or send, receive, or sign transactions.
+The FEM website presents product overviews for FEM Wallet, FEM Chain, FEMSwap and FEMScout, along with general learning guides, EVM developer resources and verified support links. It is an informational site, not a wallet or trading interface: it does not connect accounts, send or receive assets, sign transactions, or display live explorer data.
 
 FEM Chain is described here as EVM-compatible. FEM-specific network values and wallet download destinations are not included unless confirmed by an official FEM source.
 
@@ -9,9 +9,15 @@ FEM Chain is described here as EVM-compatible. FEM-specific network values and w
 - `/` — FEM overview
 - `/wallet` — wallet product information and availability
 - `/chain` — FEM Chain overview
+- `/swap` — FEMSwap product overview and verified support references
+- `/scout` — FEMScout explorer overview; no live explorer link or chain data
 - `/ecosystem` — ecosystem information
 - `/community` — community information
 - `/learn` — blockchain learning resources
+- `/learn/wallet-basics` — general wallet, key and safety lesson
+- `/learn/evm-basics` — general EVM execution lesson
+- `/learn/swaps` — general token-swap and liquidity lesson
+- `/learn/explorers` — general block-explorer lesson
 - `/developers` — developer overview
 - `/developers/evm` — EVM concepts
 - `/developers/contracts` — smart contract basics

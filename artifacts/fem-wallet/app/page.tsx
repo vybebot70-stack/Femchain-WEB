@@ -1,9 +1,9 @@
 import { BannerMotion } from "@/FemLanding";
 
 export const metadata = {
-  title: "FEM Wallet & Chain — A Clearer Way Onchain",
+  title: "FEM — Wallet, Chain, Swap & FEMScout",
   description:
-    "Meet FEM: a mobile wallet and EVM-compatible chain with familiar foundations and room to explore.",
+    "Explore FEM Wallet, the EVM-compatible FEM Chain, FEMSwap and FEMScout through a carefully verified product and learning site.",
 };
 
 export default function HomePage() {

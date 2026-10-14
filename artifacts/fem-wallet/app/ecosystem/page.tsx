@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { InfoPage } from "@/Pages";
 
 export const metadata: Metadata = {
-  title: "FEM Ecosystem — Projects and Tools",
+  title: "FEM Ecosystem — Core Product Directory",
   description:
-    "Explore the FEM ecosystem directory. Project and network-tool listings will be added when official destinations are verified.",
+    "Explore FEM Wallet, FEM Chain, FEMSwap and FEMScout product overviews, with clear availability boundaries and verified links only.",
 };
 
 export default function EcosystemPage() {

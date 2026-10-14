@@ -30,3 +30,9 @@ For Vercel's Next.js framework service, keep the service output directory at `.n
 **Why:** Vercel's Next.js builder looks for `routes-manifest.json` in the framework output directory; pointing it at `out/` causes a missing manifest deployment error.
 
 **How to apply:** Use `.next` as the configured Vercel output directory for this service; leave `out/` as the generated static export, not the framework output.
+
+Keep public FEM copy centered on FEM's products and verified capabilities; do not discuss upstream implementation relationships.
+
+**Why:** The user requested a professional FEM brand voice and explicitly asked that public copy not describe products by their implementation origins.
+
+**How to apply:** Keep FEM marketing, help pages, metadata, and route labels focused on FEM. Upstream materials may inform general education but should not be presented as FEM product lineage.

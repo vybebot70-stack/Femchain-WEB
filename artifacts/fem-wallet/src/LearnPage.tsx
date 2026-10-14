@@ -35,25 +35,29 @@ const paths = [
     title: 'The wallet basics',
     description: 'Get oriented with accounts, keys, signing, and the choices a wallet helps you make.',
     icon: Wallet,
-    href: '#wallet-basics',
+    href: '/learn/wallet-basics',
     label: 'Begin with the basics',
   },
   {
     number: 'NEXT',
-    title: 'How networks fit in',
-    description: 'Understand blockchains, transactions, and why network details matter.',
+    title: 'EVM basics',
+    description: 'Understand execution, bytecode, state changes and why network details matter.',
     icon: Layers3,
-    href: '#networks',
+    href: '/learn/evm-basics',
     label: 'Explore networks',
   },
   {
-    number: 'ALWAYS',
-    title: 'Stay safe onchain',
-    description: 'Learn the habits that help protect your wallet and your decisions.',
-    icon: ShieldCheck,
-    href: '#safety',
-    label: 'Read the safety guide',
+    number: 'EXPLORE',
+    title: 'Token swaps',
+    description: 'Get familiar with liquidity pools, price impact and slippage.',
+    icon: Layers3,
+    href: '/learn/swaps',
+    label: 'Understand swaps',
   },
+];
+
+const addedGuides = [
+  { number: 'FIELD NOTE', href: '/learn/explorers', title: 'Block explorers', description: 'Learn how public transactions, blocks and addresses are presented.', icon: Compass, label: 'Read the explorer guide' },
 ];
 
 export default function LearnPage() {
@@ -91,21 +95,21 @@ export default function LearnPage() {
             <div className="learn-section-head">
               <div>
                 <span className="eyebrow">A useful place to begin</span>
-                <h2 id="paths-title">Three paths.<br /><em>One clear start.</em></h2>
+                <h2 id="paths-title">Four focused guides.<br /><em>One clear start.</em></h2>
               </div>
               <p>Choose the question on your mind. Each guide stands on its own, and the order is here to make the unfamiliar feel easier.</p>
             </div>
             <div className="learn-path-grid">
-              {paths.map((path) => {
+              {[...paths, ...addedGuides].map((path) => {
                 const Icon = path.icon;
                 return (
-                  <a className="learn-path-card" href={path.href} key={path.title} data-testid={`link-learn-${path.href.slice(1)}`}>
+                  <Link className="learn-path-card" href={path.href} key={path.title} data-testid={`link-learn-${path.href.slice(1).replace(/\//g, '-')}`}>
                     <div className="learn-path-index"><span>{path.number}</span><ArrowUpRight aria-hidden="true" /></div>
                     <div className="learn-path-icon"><Icon aria-hidden="true" /></div>
                     <h3>{path.title}</h3>
                     <p>{path.description}</p>
                     <span className="learn-path-link">{path.label}<ArrowRight aria-hidden="true" /></span>
-                  </a>
+                  </Link>
                 );
               })}
             </div>
