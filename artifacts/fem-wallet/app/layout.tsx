@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import "../src/index.css";
+import "../src/fem-home-motion.css";
 
 export const metadata: Metadata = {
   title: "FEM Wallet & Chain — A Clearer Way Onchain",

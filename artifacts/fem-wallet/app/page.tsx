@@ -1,4 +1,4 @@
-import LandingPage from "@/App";
+import { BannerMotion } from "@/FemLanding";
 
 export const metadata = {
   title: "FEM Wallet & Chain — A Clearer Way Onchain",
@@ -7,5 +7,5 @@ export const metadata = {
 };
 
 export default function HomePage() {
-  return <LandingPage />;
+  return <BannerMotion />;
 }
